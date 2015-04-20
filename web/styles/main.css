@@ -1,0 +1,22 @@
+table{
+    background-color: #cccccc;
+}
+#pgTitle{
+    background-color: #cccc00;
+}
+th{
+    background-color: #cccc00;
+    text-align: left;
+    font-size: 25px;
+}
+#sTable{
+    background-color: #cccccc;
+    width: 600px;
+}
+
+#scontent{
+    margin: 1em;
+    font-size: large;
+    width: 60%;
+}
+
