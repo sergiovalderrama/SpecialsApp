@@ -39,9 +39,9 @@ public class Controller extends HttpServlet {
             case "blogin":
                 destination = "blogin";
                 break;
-             case "verifyblogin":
+            case "verifyblogin":
                 destination = verifyBLogin(request);
-                break;    
+                break;
             case "bregistration":
                 destination = "bregistration";
                 break;
@@ -73,27 +73,28 @@ public class Controller extends HttpServlet {
                 destination = delSpecial(request);
                 break;
         }
-        request.getRequestDispatcher("WEB-INF/" + destination +".jsp").forward(request, response);
+        request.getRequestDispatcher("WEB-INF/" + destination + ".jsp").forward(request, response);
     }
-    private String homePage(HttpServletRequest request){
+
+    private String homePage(HttpServletRequest request) {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("SpecialsAppPU");
         EntityManager em = emf.createEntityManager();
         Query query = em.createNativeQuery("SELECT Bprofile.bname, Bprofile.id, Specials.sdate,"
                 + " Specials.stime, Specials.stime2, Specials.stype, Specials.special, Specials.price"
                 + " FROM Bprofile,Specials WHERE Bprofile.buserid= Specials.buserid");
-        Object  special = (Object)query.getResultList();
+        Object special = (Object) query.getResultList();
         request.setAttribute("scontent", special);
         return "index";
     }
-    
-    private String bInformation(HttpServletRequest request){
+
+    private String bInformation(HttpServletRequest request) {
         int pid = Integer.parseInt(request.getParameter("pid"));
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("SpecialsAppPU");
         EntityManager em = emf.createEntityManager();
-        Bprofile bprofile = (Bprofile)em.createNamedQuery("Bprofile.findById")
+        Bprofile bprofile = (Bprofile) em.createNamedQuery("Bprofile.findById")
                 .setParameter("id", pid).getSingleResult();
         request.setAttribute("bprofile", bprofile);
-                
+
         return "binformation";
     }
 
@@ -118,13 +119,13 @@ public class Controller extends HttpServlet {
         busername.setStatus("pending");
         em.getTransaction().begin();
         em.persist(busername);
-        em.merge(busername);
         em.getTransaction().commit();
         em.close();
         request.setAttribute("flash", "Registration was successful.");
         return "bregistration";
 
     }
+
     private String verifyCRegistration(HttpServletRequest request) throws ServletException {
         String username = request.getParameter("username").toLowerCase();
         String username2 = request.getParameter("username2").toLowerCase();
@@ -145,20 +146,20 @@ public class Controller extends HttpServlet {
         cusername.setPassword(password);
         em.getTransaction().begin();
         em.persist(cusername);
-        em.merge(cusername);
         em.getTransaction().commit();
         em.close();
         request.setAttribute("flash", "Registration was successful.");
         return "cregistration";
 
     }
+
     private String verifyBLogin(HttpServletRequest request) {
         String username = request.getParameter("username").toLowerCase();
         String password = request.getParameter("password");
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("SpecialsAppPU");
         EntityManager em = emf.createEntityManager();
         try {
-            
+
             Buser buser = (Buser) em.createNamedQuery("Buser.findByUsername")
                     .setParameter("username", username)
                     .getSingleResult();
@@ -167,32 +168,32 @@ public class Controller extends HttpServlet {
                 return "blogin";
             }
             if (buser.getStatus().equals("pending")) {
-                request.setAttribute("flash","Your membership has not been approved yet.");
+                request.setAttribute("flash", "Your membership has not been approved yet.");
                 return "blogin";
             }
             request.getSession().setAttribute("buser", buser);
             try {
                 Query query = em.createNativeQuery("SELECT id from BPROFILE WHERE buserid=?")
                         .setParameter(1, buser.getId());
-                int value = (int)query.getSingleResult();
+                int value = (int) query.getSingleResult();
             } catch (NoResultException nre) {
                 request.setAttribute("flash", "Please complete your profile to access the menu.");
                 return "bprofile";
             }
             return "bmenu";
-        } catch(NoResultException nre){
-            request.setAttribute("flash","Incorrect Username/Password combinatioin");
+        } catch (NoResultException nre) {
+            request.setAttribute("flash", "Incorrect Username/Password combinatioin");
             return "blogin";
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             request.setAttribute("flash", e);
             return "blogin";
         }
 
     }
-    private String bPost(HttpServletRequest request){
+
+    private String bPost(HttpServletRequest request) {
         Buser buser = (Buser) request.getSession().getAttribute("buser");
-        if(buser == null){
+        if (buser == null) {
             return "blogin";
         }
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("SpecialsAppPU");
@@ -202,23 +203,28 @@ public class Controller extends HttpServlet {
         request.setAttribute("specials", slist);
         return "bpost";
     }
-    private String bMenu(HttpServletRequest request){
-        if(verifyBSession(request)){
+
+    private String bMenu(HttpServletRequest request) {
+        if (verifyBSession(request)) {
             return "blogin";
         }
         return "bmenu";
     }
+
     private String bLogout(HttpServletRequest request) {
         request.getSession().removeAttribute("buser");
         return "index";
     }
-    private String bProfile(HttpServletRequest request){
+
+    private String bProfile(HttpServletRequest request) {
         String bname = request.getParameter("bname");
         String bphone = request.getParameter("bphone");
         String baddress = request.getParameter("baddress");
         String bwebsite = request.getParameter("bwebsite");
-        Buser buser = (Buser)request.getSession().getAttribute("buser");
-        if(buser == null) return "blogin";
+        Buser buser = (Buser) request.getSession().getAttribute("buser");
+        if (buser == null) {
+            return "blogin";
+        }
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("SpecialsAppPU");
         EntityManager em = emf.createEntityManager();
         Bprofile bprofile = new Bprofile();
@@ -228,55 +234,61 @@ public class Controller extends HttpServlet {
         bprofile.setWebsite(bwebsite);
         bprofile.setBuserid(buser);
         em.getTransaction().begin();
-        em.persist(bprofile);
         em.merge(bprofile);
         em.getTransaction().commit();
         em.close();
-        return "bmenu"; 
+        return "bmenu";
     }
+
     private String verifyUser(String username, String username2, String password,
             String password2, String email, String email2) {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("SpecialsAppPU");
-        EntityManager em = emf.createEntityManager();
-        List<Buser> blist = em.createNamedQuery("Buser.findAll").getResultList();
-        List<Cuser> clist = em.createNamedQuery("Cuser.findAll").getResultList();
-        List<Administrator> alist = em.createNamedQuery("Administrator.findAll").getResultList();
-        for (int i = 0; i < blist.size(); i++) {
-            if (blist.get(i).getUsername().equals(username)) {
-                return "Username is already in use.";
+        try {
+            EntityManagerFactory emf = Persistence.createEntityManagerFactory("SpecialsAppPU");
+            EntityManager em = emf.createEntityManager();
+            Buser buserName = (Buser) em.createNamedQuery("Buser.findByUsername")
+                    .setParameter("username", username)
+                    .getSingleResult();
+            if (buserName != null) {
+                return "Username: " + buserName.getUsername() + " is already in use.";
             }
-        }
-        for (int i = 0; i < clist.size(); i++) {
-            if (clist.get(i).getUsername().equals(username)) {
-                return "Username is already in use.";
+            Cuser cuserName = (Cuser) em.createNamedQuery("Cuser.findByUsername")
+                    .setParameter("username", username)
+                    .getSingleResult();
+            if(cuserName !=null) {
+                return "Username: " + cuserName.getUsername() + " is already in user.";
             }
-        }
-        for (int i = 0; i < alist.size(); i++) {
-            if (alist.get(i).getUsername().equals(username)) {
-                return "Username is already in use.";
+            Administrator administratorName = (Administrator) em.createNamedQuery("Administrator.findByUsername")
+                    .setParameter("username", username)
+                    .getSingleResult();
+            if(administratorName != null){
+                return "Username: " + administratorName.getUsername() + " is already in user";
             }
+            if (username.length() < 4 || username.length() > 20) {
+                return "Username must be between 4 and 20 characters.";
+            }
+            if (password.length() < 4 || password.length() > 10) {
+                return "Password must be between 4 and 10 characters.";
+            }
+            if (!username.equals(username2)) {
+                return "Username does not match.";
+            }
+            if (!password.equals(password2)) {
+                return "Password does not match.";
+            }
+            if (!email.equals(email2)) {
+                return "E-mail does not match";
+            }
+        }catch(NoResultException nre){
+            return "valid";
         }
-        if (username.length() < 4 || username.length() > 20) {
-            return "Username must be between 4 and 20 characters.";
-        }
-        if (password.length() < 4 || password.length() > 10) {
-            return "Password must be between 4 and 10 characters.";
-        }
-        if (!username.equals(username2)) {
-            return "Username does not match.";
-        }
-        if (!password.equals(password2)) {
-            return "Password does not match.";
-        }
-        if (!email.equals(email2)) {
-            return "E-mail does not match";
-        }
-
         return "valid";
     }
-    private String verifyBPost(HttpServletRequest request){
-        Buser buser = (Buser)request.getSession().getAttribute("buser");
-        if(buser==null)return "blogin";
+
+    private String verifyBPost(HttpServletRequest request) {
+        Buser buser = (Buser) request.getSession().getAttribute("buser");
+        if (buser == null) {
+            return "blogin";
+        }
         String date = request.getParameter("date");
         String time = request.getParameter("time");
         String time2 = request.getParameter("time2");
@@ -291,37 +303,39 @@ public class Controller extends HttpServlet {
         } catch (ParseException ex) {
             Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
         }
-        try{
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("SpecialsAppPU");
-        EntityManager em = emf.createEntityManager();
-        Specials postspecial = new Specials();
-        postspecial.setSdate(judate);
-        postspecial.setStime(time);
-        postspecial.setStime2(time2);
-        postspecial.setPrice(price);
-        postspecial.setSpecial(special);
-        postspecial.setStype(type);
-        postspecial.setBuserid(buser);
-        em.getTransaction().begin();
-        em.persist(postspecial);
-        em.merge(postspecial);
-        em.getTransaction().commit();
-       List<Specials> slist = em.createNamedQuery("Specials.findByBuserid")
-                .setParameter("buserid", buser).getResultList();
-        request.setAttribute("specials", slist);
-        em.close();
-        }catch(ConstraintViolationException cve){
+        try {
+            EntityManagerFactory emf = Persistence.createEntityManagerFactory("SpecialsAppPU");
+            EntityManager em = emf.createEntityManager();
+            Specials postspecial = new Specials();
+            postspecial.setSdate(judate);
+            postspecial.setStime(time);
+            postspecial.setStime2(time2);
+            postspecial.setPrice(price);
+            postspecial.setSpecial(special);
+            postspecial.setStype(type);
+            postspecial.setBuserid(buser);
+            em.getTransaction().begin();
+            em.persist(postspecial);
+            em.getTransaction().commit();
+            List<Specials> slist = em.createNamedQuery("Specials.findByBuserid")
+                    .setParameter("buserid", buser).getResultList();
+            request.setAttribute("specials", slist);
+            em.close();
+        } catch (ConstraintViolationException cve) {
             request.setAttribute("flash", cve);
         }
         return "bpost";
     }
-    private String delSpecial(HttpServletRequest request){
-        if(verifyBSession(request))return "blogin";
+
+    private String delSpecial(HttpServletRequest request) {
+        if (verifyBSession(request)) {
+            return "blogin";
+        }
         int sid = Integer.parseInt(request.getParameter("delsbutton"));
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("SpecialsAppPU");
         EntityManager em = emf.createEntityManager();
-        Specials special = (Specials)em.createNamedQuery("Specials.findById")
-                .setParameter("id",sid)
+        Specials special = (Specials) em.createNamedQuery("Specials.findById")
+                .setParameter("id", sid)
                 .getSingleResult();
         em.getTransaction().begin();
         em.remove(em.merge(special));
@@ -329,6 +343,7 @@ public class Controller extends HttpServlet {
         request.getSession().setAttribute("specials", postedSpecials(request));
         return "bpost";
     }
+
     private List postedSpecials(HttpServletRequest request) {
         Buser buser = (Buser) request.getSession().getAttribute("buser");
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("SpecialsAppPU");
@@ -337,6 +352,7 @@ public class Controller extends HttpServlet {
                 .setParameter("buserid", buser).getResultList();
         return slist;
     }
+
     private boolean verifyBSession(HttpServletRequest request) {
         Buser buser = (Buser) request.getSession().getAttribute("buser");
         if (buser == null) {
@@ -345,7 +361,6 @@ public class Controller extends HttpServlet {
             return false;
         }
     }
-
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
