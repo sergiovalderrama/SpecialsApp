@@ -81,11 +81,12 @@ public class Controller extends HttpServlet {
         EntityManager em = emf.createEntityManager();
         Query query = em.createNativeQuery("SELECT Bprofile.bname, Bprofile.id, Specials.sdate,"
                 + " Specials.stime, Specials.stime2, Specials.stype, Specials.special, Specials.price"
-                + " FROM Bprofile,Specials WHERE Bprofile.buserid= Specials.buserid");
+                + " FROM Bprofile,Specials WHERE Bprofile.buserid= Specials.buserid AND Specials.sdate > CURRENT_DATE ORDER BY Specials.stime");
         Object special = (Object) query.getResultList();
         request.setAttribute("scontent", special);
         return "index";
     }
+   
 
     private String bInformation(HttpServletRequest request) {
         int pid = Integer.parseInt(request.getParameter("pid"));
@@ -213,7 +214,8 @@ public class Controller extends HttpServlet {
 
     private String bLogout(HttpServletRequest request) {
         request.getSession().removeAttribute("buser");
-        return "index";
+        request.setAttribute("flash", "You are now logged out.");
+        return "blogin";
     }
 
     private String bProfile(HttpServletRequest request) {
@@ -298,8 +300,12 @@ public class Controller extends HttpServlet {
         SimpleDateFormat sdfdate = new SimpleDateFormat("yyyy-MM-dd");
         SimpleDateFormat sdftime = new SimpleDateFormat("HH:mm");
         java.util.Date judate = null;
+        java.util.Date jutime = null;
+        java.util.Date jutime2 = null;
         try {
             judate = sdfdate.parse(date);
+            jutime = sdftime.parse(time);
+            jutime2 = sdftime.parse(time2);
         } catch (ParseException ex) {
             Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -308,8 +314,8 @@ public class Controller extends HttpServlet {
             EntityManager em = emf.createEntityManager();
             Specials postspecial = new Specials();
             postspecial.setSdate(judate);
-            postspecial.setStime(time);
-            postspecial.setStime2(time2);
+            postspecial.setStime(jutime);
+            postspecial.setStime2(jutime2);
             postspecial.setPrice(price);
             postspecial.setSpecial(special);
             postspecial.setStype(type);

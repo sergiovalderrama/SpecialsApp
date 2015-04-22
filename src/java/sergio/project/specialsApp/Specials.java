@@ -39,21 +39,23 @@ import javax.validation.constraints.Size;
     @NamedQuery(name = "Specials.findByPrice", query = "SELECT s FROM Specials s WHERE s.price = :price"),
     @NamedQuery(name = "Specials.findByBuserid", query = "SELECT s FROM Specials s WHERE s.buserid = :buserid ORDER BY s.sdate"),
     @NamedQuery(name = "Specials.findById", query = "SELECT s FROM Specials s WHERE s.id = :id")})
-
 public class Specials implements Serializable {
     private static final long serialVersionUID = 1L;
+    @Basic(optional = false)
+    @NotNull
+    @Column(nullable = false)
     @Temporal(TemporalType.DATE)
     private Date sdate;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 15)
-    @Column(nullable = false, length = 15)
-    private String stime;
+    @Column(nullable = false)
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date stime;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 15)
-    @Column(nullable = false, length = 15)
-    private String stime2;
+    @Column(nullable = false)
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date stime2;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 25)
@@ -85,8 +87,9 @@ public class Specials implements Serializable {
         this.id = id;
     }
 
-    public Specials(Integer id, String stime, String stime2, String stype, String special, String price) {
+    public Specials(Integer id, Date sdate, Date stime, Date stime2, String stype, String special, String price) {
         this.id = id;
+        this.sdate = sdate;
         this.stime = stime;
         this.stime2 = stime2;
         this.stype = stype;
@@ -102,19 +105,19 @@ public class Specials implements Serializable {
         this.sdate = sdate;
     }
 
-    public String getStime() {
+    public Date getStime() {
         return stime;
     }
 
-    public void setStime(String stime) {
+    public void setStime(Date stime) {
         this.stime = stime;
     }
 
-    public String getStime2() {
+    public Date getStime2() {
         return stime2;
     }
 
-    public void setStime2(String stime2) {
+    public void setStime2(Date stime2) {
         this.stime2 = stime2;
     }
 

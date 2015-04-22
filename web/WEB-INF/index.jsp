@@ -1,5 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -33,6 +34,11 @@
         </table>
         </form>     
         <h1>Specials Home Page</h1>
+        <form action="controller" method="post">
+            <input type="date" name="sortingdate"/>
+            <input type="hidden" name="action" value="sortbydate"/>
+            <input type="submit" value="sort"/>
+        </form>
         <c:forEach var="special" items="${scontent}">
             <div id="scontent">
                 <table id="sTable">
@@ -43,7 +49,9 @@
                     </tr>
                     <tr>
                         <td>
-                            <b>Date:</b>${special[2]} <b>Time:</b>${special[3]} to ${special[4]}<br>
+                            <b>Date:</b><fmt:formatDate type="date" value="${special[2]}"/> <b>Time:</b>
+                            <fmt:formatDate type="time" value="${special[3]}"/> to 
+                            <fmt:formatDate type="time" value="${special[4]}"/><br>
                             <b>Type:</b>${special[5]}<br>
                             <b>Price:</b>$${special[7]}<br>
                             <b>Special:</b><br>

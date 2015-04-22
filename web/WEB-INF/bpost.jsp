@@ -1,5 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -50,13 +51,14 @@
                 <c:forEach var="special" items="${specials}">
                     <tr >
                         <td colspan="2">
-                            <b>Date:</b> <c:out value="${special.sdate}"/>
+                            <b>Date:</b> <fmt:formatDate type="date" value="${special.sdate}"/>
                         </td>
                     </tr>
                     <tr>
                         <td>
                             Type: <c:out value="${special.stype}"/></br>
-                            Time: <c:out value="${special.stime} to ${special.stime2}"/><br>
+                            Time: <fmt:formatDate type="time" value="${special.stime}"/> to 
+                            <fmt:formatDate type="time" value="${special.stime2}"/><br>
                             Price: $<c:out value="${special.price}"/><br>
                             <c:out value="${special.special}"/>
                         </td>

@@ -40,12 +40,12 @@ public class Buser implements Serializable {
     private static final long serialVersionUID = 1L;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 4, max = 20)
+    @Size(min = 1, max = 20)
     @Column(nullable = false, length = 20)
     private String username;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 4, max = 10)
+    @Size(min = 1, max = 10)
     @Column(nullable = false, length = 10)
     private String password;
     // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
@@ -62,14 +62,6 @@ public class Buser implements Serializable {
     @Basic(optional = false)
     @Column(nullable = false)
     private Integer id;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "buserid")
-    private List<Bprofile> bprofileList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "buserid")
-    private List<Subscription> subscriptionList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "buserid")
-    private List<Review> reviewList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "buserid")
-    private List<Brating> bratingList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "buserid")
     private List<Specials> specialsList;
 
@@ -125,38 +117,6 @@ public class Buser implements Serializable {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public List<Bprofile> getBprofileList() {
-        return bprofileList;
-    }
-
-    public void setBprofileList(List<Bprofile> bprofileList) {
-        this.bprofileList = bprofileList;
-    }
-
-    public List<Subscription> getSubscriptionList() {
-        return subscriptionList;
-    }
-
-    public void setSubscriptionList(List<Subscription> subscriptionList) {
-        this.subscriptionList = subscriptionList;
-    }
-
-    public List<Review> getReviewList() {
-        return reviewList;
-    }
-
-    public void setReviewList(List<Review> reviewList) {
-        this.reviewList = reviewList;
-    }
-
-    public List<Brating> getBratingList() {
-        return bratingList;
-    }
-
-    public void setBratingList(List<Brating> bratingList) {
-        this.bratingList = bratingList;
     }
 
     public List<Specials> getSpecialsList() {
