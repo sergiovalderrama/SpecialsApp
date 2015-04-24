@@ -25,7 +25,7 @@
                 </table>
             <h1>Business Profile</h1>
             <h3><c:out value="${flash}"/></h3>
-            <form method="POST" action="controller">
+            <form method="POST" action="InsertBusinessProfile">
                 <table>
                     <tr>
                         <td>

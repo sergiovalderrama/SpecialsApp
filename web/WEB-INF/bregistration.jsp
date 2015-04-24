@@ -9,7 +9,7 @@
     </head>
     <div id="hd"></div>
     <div id="bd">
-        <form>
+        <form action="HomeNavigationButtons" method="Post">
             <table>
                 <tr>
                     <td>
@@ -32,7 +32,7 @@
         </form>
         <h1>Business Registration Page</h1>
         <h2 class="flash"><c:out value="${flash}"/></h2>
-        <form method="POST" action="controller">
+        <form method="POST" action="BusinessRegistration">
             <table>
                 <tr>
                     <td><label>Username : </label></td>

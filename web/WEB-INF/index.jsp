@@ -12,7 +12,7 @@
     <body>
     <div id="hd"></div>
     <div id="bd">
-        <form>
+        <form action="HomeNavigationButtons" method="POST">
         <table>
             <tr>
                 <td>
@@ -44,7 +44,7 @@
                 <table id="sTable">
                     <tr>
                         <th>
-                            <a href="controller?action=binfo&pid=${special[1]}">${special[0]} --ID: ${special[1]}</a>
+                            <a href="BusinessInformation?pid=${special[1]}">${special[0]} --ID: ${special[1]}</a>
                         </th>
                     </tr>
                     <tr>

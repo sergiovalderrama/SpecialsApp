@@ -18,8 +18,7 @@
                         <h3>Username: <c:out value="${buser.username}"/></h3>
                     </td>
                     <td>
-                         <form method="POST" action="controller">
-                            <input type="hidden" name="action" value="blogout"/>
+                         <form method="POST" action="BusinessLogout">
                             <input type="submit" value="Logout"/>
                         </form>
                     </td>
@@ -28,14 +27,12 @@
             <table>
                 <tr>
                     <td>
-                        <form method="POST" action="controller">
-                            <input type="hidden" name="action" value="bmenu"/>
+                        <form method="POST" action="BusinessMenu">
                             <input type="submit" value="Business Menu"/>
                         </form>
                     </td>
                     <td>
-                        <form method="POST" action="controller">
-                            <input type="hidden" name="action" value="bpost"/>
+                        <form method="POST" action="BusinessPost">
                             <input type="submit" value="Post Special"/>
                         </form>
                     </td>

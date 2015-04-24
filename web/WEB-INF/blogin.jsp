@@ -10,7 +10,7 @@
     <body>
         <div id="hd"></div>
         <div id="bd">
-            <form>
+            <form method="Post" action="HomeNavigationButtons">
                 <table>
                     <tr>
                         <td>
@@ -33,7 +33,7 @@
             </form>
             <h1>Business Login</h1>
             <h3><c:out value="${flash}"/></h3>
-            <form method="POST" action="controller">
+            <form method="POST" action="BusinessLogin">
                 <table>
                     <tr>
                         <td>

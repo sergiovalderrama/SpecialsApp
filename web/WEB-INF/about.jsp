@@ -10,7 +10,7 @@
     <body>
         <div id="hd"></div>
         <div id="bd">
-            <form>
+            <form action="HomeNavigationButtons" method="Post">
                 <table>
                     <tr>
                         <td>

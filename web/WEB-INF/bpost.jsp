@@ -17,7 +17,7 @@
                         <h3>Username: <c:out value="${buser.username}"/></h3>
                     </td>
                     <td>
-                        <form method="POST" action="controller">
+                        <form method="POST" action="BusinessLogout">
                             <input type="hidden" name="action" value="blogout"/>
                             <input type="submit" value="Logout"/>
                         </form>
@@ -27,13 +27,13 @@
             <table>
                 <tr>
                     <td>
-                        <form method="POST" action="controller">
+                        <form method="POST" action="BusinessPost">
                             <input type="hidden" name="action" value="bmenu"/>
                             <input type="submit" value="Business Menu"/>
                         </form>
                     </td>
                     <td>
-                        <form method="POST" action="controller">
+                        <form method="POST" action="BusinessPost">
                             <input type="hidden" name="action" value="bpost"/>
                             <input type="submit" value="Post Special"/>
                         </form>
@@ -47,7 +47,7 @@
                        Posted Specials 
                     </th>
                 </tr>
-                <form action="controller" value="POST">
+                <form action="BusinessPost" method="Post">
                 <c:forEach var="special" items="${specials}">
                     <tr >
                         <td colspan="2">
@@ -71,7 +71,7 @@
                 </form>
             </table>
             <h1>Post Special Page</h1>
-            <form method="post" action="controller">
+            <form method="post" action="BusinessPost">
                 <table>
                     <tr> 
                         <td>
