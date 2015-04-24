@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package sergio.project.specialsApp;
 
 import java.io.Serializable;
@@ -19,10 +14,6 @@ import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-/**
- *
- * @author sergio
- */
 @Entity
 @Table(catalog = "", schema = "", uniqueConstraints = {
     @UniqueConstraint(columnNames = {"USERNAME"})})
@@ -30,26 +21,19 @@ import javax.validation.constraints.Size;
     @NamedQuery(name = "Administrator.findAll", query = "SELECT a FROM Administrator a"),
     @NamedQuery(name = "Administrator.findByUsername", query = "SELECT a FROM Administrator a WHERE a.username = :username"),
     @NamedQuery(name = "Administrator.findByPassword", query = "SELECT a FROM Administrator a WHERE a.password = :password"),
-    @NamedQuery(name = "Administrator.findByEmail", query = "SELECT a FROM Administrator a WHERE a.email = :email"),
     @NamedQuery(name = "Administrator.findById", query = "SELECT a FROM Administrator a WHERE a.id = :id")})
 public class Administrator implements Serializable {
     private static final long serialVersionUID = 1L;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 20)
+    @Size(min = 4, max = 20)
     @Column(nullable = false, length = 20)
     private String username;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 10)
+    @Size(min = 4, max = 10)
     @Column(nullable = false, length = 10)
     private String password;
-    // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 50)
-    @Column(nullable = false, length = 50)
-    private String email;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
@@ -63,11 +47,10 @@ public class Administrator implements Serializable {
         this.id = id;
     }
 
-    public Administrator(Integer id, String username, String password, String email) {
+    public Administrator(Integer id, String username, String password) {
         this.id = id;
         this.username = username;
         this.password = password;
-        this.email = email;
     }
 
     public String getUsername() {
@@ -84,14 +67,6 @@ public class Administrator implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public Integer getId() {
