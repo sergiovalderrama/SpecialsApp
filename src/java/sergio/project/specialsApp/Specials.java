@@ -22,7 +22,7 @@ import javax.validation.constraints.Size;
 @Table(catalog = "", schema = "")
 @NamedQueries({
     @NamedQuery(name = "Specials.findAll", query = "SELECT s FROM Specials s"),
-    @NamedQuery(name = "Specials.findBySdate", query = "SELECT s FROM Specials s WHERE s.sdate = :sdate"),
+    @NamedQuery(name = "Specials.findBySdate", query = "SELECT s FROM Specials s WHERE s.sdate = :sdate ORDER BY s.sdate, s.stime"),
     @NamedQuery(name = "Specials.findByStime", query = "SELECT s FROM Specials s WHERE s.stime = :stime"),
     @NamedQuery(name = "Specials.findByStime2", query = "SELECT s FROM Specials s WHERE s.stime2 = :stime2"),
     @NamedQuery(name = "Specials.findByStype", query = "SELECT s FROM Specials s WHERE s.stype = :stype"),
