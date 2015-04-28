@@ -82,7 +82,30 @@ public class BusinessPost extends HttpServlet {
             em.remove(em.merge(special));
             em.getTransaction().commit();
             em.close();
-            request.getSession().setAttribute("specials", postedSpecials(request,buser));
+            request.setAttribute("specials", postedSpecials(request,buser));
+            request.getRequestDispatcher("WEB-INF/bpost.jsp").forward(request, response);
+        }
+        if(action.equals("sortbydate")){
+            String sortingDate = request.getParameter("sortingdate");
+            SimpleDateFormat sdfdate = new SimpleDateFormat("yyyy-MM-dd");
+            java.util.Date juSortDate = null;
+            try {
+                juSortDate = sdfdate.parse(sortingDate);
+            } catch (ParseException ex) {
+                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            EntityManagerFactory emf = Persistence.createEntityManagerFactory("SpecialsAppPU");
+            EntityManager em = emf.createEntityManager();
+            List<Specials> sortedDateList = em.createQuery("SELECT s FROM Specials s "
+                    + "WHERE s.sdate = :sdate AND s.buserid = :buserid ORDER BY s.sdate, s.stime")
+                    .setParameter("sdate", juSortDate)
+                    .setParameter("buserid", buser)
+                    .getResultList();
+            request.setAttribute("specials", sortedDateList);
+            request.getRequestDispatcher("WEB-INF/bpost.jsp").forward(request, response);
+        }
+        if(action.equals("all")){
+            request.setAttribute("specials", postedSpecials(request,buser));
             request.getRequestDispatcher("WEB-INF/bpost.jsp").forward(request, response);
         }
         if (action.equals("bmenu")) {

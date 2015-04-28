@@ -5,7 +5,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" type="text/css" href="styles/main.css">
-        <title>JSP Page</title>
+        <title> Business Information </title>
     </head>
     <body>
         <h1>Business Information</h1>

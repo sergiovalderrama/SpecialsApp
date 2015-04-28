@@ -1,11 +1,11 @@
-<%@page contentType="text/html" pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" type="text/css" href="styles/main.css">
-        <title>Business Login Page</title>
+        <title>Customer Login</title>
     </head>
     <body>
         <div id="hd"></div>
@@ -49,9 +49,9 @@
                     </td>
                 </tr>
             </table>
-            <h1>Business Login</h1>
+            <h1>Customer Login</h1>
             <h3><c:out value="${flash}"/></h3>
-            <form method="POST" action="BusinessLogin">
+            <form method="POST" action="CustomerLogin">
                 <table>
                     <tr>
                         <td>
@@ -70,7 +70,7 @@
                         </td>
                     </tr>
                 </table>
-                <input type="hidden" name="action" value="verifyblogin"/>
+                <input type="hidden" name="action" value="verifyclogin"/>
                 <input type="submit" value="Login"/>
             </form>
         </div>

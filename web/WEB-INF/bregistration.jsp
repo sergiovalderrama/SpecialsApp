@@ -9,27 +9,45 @@
     </head>
     <div id="hd"></div>
     <div id="bd">
-        <form action="HomeNavigationButtons" method="Post">
             <table>
                 <tr>
                     <td>
-                        <button name="action" value="home">Home</button>
+                        <form action="home" method="Post">
+                            <input type="submit" value="Home"/>
+                        </form>
                     </td>
                     <td>
-                        <button name="action" value="about">About</button>
+                        <form action="about" method="Post">
+                            <input type="submit" value="About"/>
+                        </form>
                     </td>
                     <td>
-                        <button name="action" value="cregistration">Customer Registration</button>
+                        <form action="CustomerRegistration" method="Post">
+                            <input type="submit" value="Customer Registration"/>
+                        </form>
                     </td>
                     <td>
-                        <button name="action" value="bregistration">Business Registration</button>
+                        <form action="BusinessRegistration" method="Post">
+                            <input type="submit" value="Business Registration"/>
+                        </form>
                     </td>
                     <td>
-                        <button name="action" value="blogin">Business Login</button>
+                        <form action="CustomerLogin" method="Post">
+                            <input type="submit" value="Customer Login"/>
+                        </form>
+                    </td>
+                    <td>
+                        <form action="BusinessLogin" method="Post">
+                            <input type="submit" value="Business Login"/>
+                        </form>
+                    </td>
+                    <td>
+                        <form action="AdministratorLogin" method="Post">
+                            <input type="submit" value="Administrator Login"/>
+                        </form>
                     </td>
                 </tr>
             </table>
-        </form>
         <h1>Business Registration Page</h1>
         <h2 class="flash"><c:out value="${flash}"/></h2>
         <form method="POST" action="BusinessRegistration">

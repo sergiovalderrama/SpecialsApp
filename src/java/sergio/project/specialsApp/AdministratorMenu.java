@@ -7,17 +7,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(name = "BusinessMenu", urlPatterns = {"/BusinessMenu"})
-public class BusinessMenu extends HttpServlet {
-
+@WebServlet(name = "AdministratorMenu", urlPatterns = {"/AdministratorMenu"})
+public class AdministratorMenu extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        Buser buser = (Buser) request.getSession().getAttribute("buser");
-        if (buser == null) {
-            request.setAttribute("flash", "Please login to access this option.");
-            request.getRequestDispatcher("WEB-INF/blogin.jsp").forward(request, response);
-        }
-        request.getRequestDispatcher("WEB-INF/bmenu.jsp").forward(request, response);
+       Administrator administrator =(Administrator) request.getSession().getAttribute("administrator");
+       if(administrator == null){
+           request.setAttribute("flash", "Please login to access this option.");
+           request.getRequestDispatcher("WEB-INF/alogin.jsp").forward(request, response);
+       }
+       request.getRequestDispatcher("WEB-INF/amenu.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -12,50 +12,38 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(name = "BusinessLogin", urlPatterns = {"/BusinessLogin"})
-public class BusinessLogin extends HttpServlet {
-
+@WebServlet(name = "AdministratorLogin", urlPatterns = {"/AdministratorLogin"})
+public class AdministratorLogin extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String action = request.getParameter("action");
         if (action == null) {
-            request.getRequestDispatcher("WEB-INF/blogin.jsp").forward(request, response);
+            request.getRequestDispatcher("WEB-INF/alogin.jsp").forward(request, response);
         }
-        if (action.equals("verifyblogin")) {
+        if (action.equals("verifyalogin")) {
             String username = request.getParameter("username").toLowerCase();
             String password = request.getParameter("password");
             EntityManagerFactory emf = Persistence.createEntityManagerFactory("SpecialsAppPU");
             EntityManager em = emf.createEntityManager();
             try {
 
-                Buser buser = (Buser) em.createNamedQuery("Buser.findByUsername")
+                Administrator administrator = (Administrator) em.createNamedQuery("Administrator.findByUsername")
                         .setParameter("username", username)
                         .getSingleResult();
-                if (!buser.getPassword().equals(password)) {
+                if (!administrator.getPassword().equals(password)) {
                     request.setAttribute("flash", "Incorrect Username/Password combination. ");
-                    request.getRequestDispatcher("WEB-INF/blogin.jsp").forward(request, response);
+                    request.getRequestDispatcher("WEB-INF/alogin.jsp").forward(request, response);
                 }
-                if (buser.getStatus().equals("pending")) {
-                    request.setAttribute("flash", "Your membership has not been approved yet.");
-                    request.getRequestDispatcher("WEB-INF/blogin.jsp").forward(request, response);
-                }
-                request.getSession().setAttribute("buser", buser);
-                try {
-                    Query query = em.createNativeQuery("SELECT id from BPROFILE WHERE buserid=?")
-                            .setParameter(1, buser.getId());
-                    int value = (int) query.getSingleResult();
-                } catch (NoResultException nre) {
-                    request.setAttribute("flash", "Please complete your profile to access the menu.");
-                    request.getRequestDispatcher("WEB-INF/bprofile.jsp").forward(request, response);
-                }
-                response.sendRedirect("BusinessMenu");
+                request.getSession().setAttribute("administrator", administrator);
+                request.getRequestDispatcher("WEB-INF/amenu.jsp").forward(request, response);
             } catch (NoResultException nre) {
                 request.setAttribute("flash", "Incorrect Username/Password combinatioin");
-                request.getRequestDispatcher("WEB-INF/blogin.jsp").forward(request, response);
+                request.getRequestDispatcher("WEB-INF/alogin.jsp").forward(request, response);
             } catch (Exception e) {
                 request.setAttribute("flash", e);
-                request.getRequestDispatcher("WEB-INF/blogin.jsp").forward(request, response);
+                request.getRequestDispatcher("WEB-INF/alogin.jsp").forward(request, response);
             }
+            request.getRequestDispatcher("WEB-INF/alogin.jsp").forward(request, response);
         }
     }
 

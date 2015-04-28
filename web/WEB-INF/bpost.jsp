@@ -41,89 +41,113 @@
                 </tr>
             </table>
             <c:out value="${flash}"/>
-            <table style="float: right" border="2" >
-                <tr>
-                    <th colspan="2">
-                       Posted Specials 
-                    </th>
-                </tr>
-                <form action="BusinessPost" method="Post">
-                <c:forEach var="special" items="${specials}">
-                    <tr >
-                        <td colspan="2">
-                            <b>Date:</b> <fmt:formatDate type="date" value="${special.sdate}"/>
+            <div id="scontent">
+                <table style="float: right" border="2" >
+
+                    <tr>
+                        <td>
+                            <form action="BusinessPost" method="Post">
+                            <input type="date" name="sortingdate" required/>
+                        </td>
+                        <td>
+                            <input type="hidden" name="action" value="sortbydate"/>
+                            <input type="submit" value="Filter"/>
+                            </form>
+                            <form action="BusinessPost" method="Post">
+                                <input type="hidden" name="action" value="all"/>
+                                <input type="submit" value="View All"/>
+                            </form>
+
                         </td>
                     </tr>
                     <tr>
-                        <td>
-                            Type: <c:out value="${special.stype}"/></br>
-                            Time: <fmt:formatDate type="time" value="${special.stime}"/> to 
-                            <fmt:formatDate type="time" value="${special.stime2}"/><br>
-                            Price: $<c:out value="${special.price}"/><br>
-                            <c:out value="${special.special}"/>
-                        </td>
-                        <td>
-                            <button name ="delsbutton" value="${special.id}">Delete</button>
-                        </td>
+                        <th colspan="2">
+                            Posted Specials 
+                        </th>
                     </tr>
-                </c:forEach>
-                    <input type="hidden" name="action" value="delspecial"/>
-                </form>
-            </table>
-            <h1>Post Special Page</h1>
-            <form method="post" action="BusinessPost">
-                <table>
-                    <tr> 
-                        <td>
-                            <label>Special Date : </label>
-                        </td>
-                        <td>
-                            <input type="date" name="date" required/>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label>Time : </label>
-                        </td>
-                        <td>
-                            <input type="time" name="time" required/> to <input type="time" name="time2" required/>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label>Special Type : </label>
-                        </td>
-                        <td>
-                            <select name="type" required>
-                                <option value="Happy Hour">Happy Hour</option>
-                                <option value="Brunch">Brunch</option>
-                                <option value="Lunch">Lunch</option>
-                                <option value="Dinner">Dinner</option>
-                                <option value="Breakfast">Breakfast</option>
-                            </select>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label>Price : </label>
-                        </td>
-                        <td>
-                            $<input type="number" name="price" required/>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label>Special : </label>
-                        </td>
-                        <td>
-                                <input type="textarea" name="special" rowspan="5" required></textarea>
-                        </td>
-                    </tr>
+                    <form action="BusinessPost" method="Post">
+                        <c:forEach var="special" items="${specials}">
+                            <tr >
+                                <td colspan="2">
+                                    <b>Date:</b> <fmt:formatDate type="date" value="${special.sdate}"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Type: <c:out value="${special.stype}"/></br>
+                                    Time: <fmt:formatDate type="time" value="${special.stime}"/> to 
+                                    <fmt:formatDate type="time" value="${special.stime2}"/><br>
+                                    Price: $<c:out value="${special.price}"/><br>
+                                    <c:out value="${special.special}"/>
+                                </td>
+                                <td>
+                                    <button name ="delsbutton" value="${special.id}">Delete</button>
+                                </td>
+                            </tr>
+                            <tr border="0" color="white">
+                                <td colspan="2">
+                                    <hr>
+                                </td>
+                            </tr>
+                        </c:forEach>
+                        <input type="hidden" name="action" value="delspecial"/>
+                    </form>
                 </table>
-                <input type="hidden" name="action" value="verifybpost"/>
-                <input type="submit" value="Submit"/>
-            </form>
-        </div>
-        <div id="ft"></div>
+
+                <h1>Post Special Page</h1>
+                <form method="post" action="BusinessPost">
+                    <table>
+                        <tr> 
+                            <td>
+                                <label>Special Date : </label>
+                            </td>
+                            <td>
+                                <input type="date" name="date" required/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Time : </label>
+                            </td>
+                            <td>
+                                <input type="time" name="time" required/> to <input type="time" name="time2" required/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Special Type : </label>
+                            </td>
+                            <td>
+                                <select name="type" required>
+                                    <option value="Happy Hour">Happy Hour</option>
+                                    <option value="Brunch">Brunch</option>
+                                    <option value="Lunch">Lunch</option>
+                                    <option value="Dinner">Dinner</option>
+                                    <option value="Breakfast">Breakfast</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Price : </label>
+                            </td>
+                            <td>
+                                $<input type="number" name="price" required/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Special : </label>
+                            </td>
+                            <td>
+                                <input type="text" name="special" size="35" required/>
+                            </td>
+                        </tr>
+                    </table>
+                    <input type="hidden" name="action" value="verifybpost"/>
+                    <input type="submit" value="Submit"/>
+                </form>
+            </div>
+            <div id="ft"></div>
     </body>
 </html>

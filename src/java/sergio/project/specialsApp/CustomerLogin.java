@@ -2,31 +2,47 @@ package sergio.project.specialsApp;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.NoResultException;
+import javax.persistence.Persistence;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(name = "HomeNavigationButtons", urlPatterns = {"/HomeNavigationButtons"})
-public class HomeNavigationButtons extends HttpServlet {
+@WebServlet(name = "CustomerLogin", urlPatterns = {"/CustomerLogin"})
+public class CustomerLogin extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
        String action = request.getParameter("action");
-       if (action.equals("home")) {
+        if (action == null) {
+            request.getRequestDispatcher("WEB-INF/clogin.jsp").forward(request, response);
+        }
+        if (action.equals("verifyclogin")) {
+            String username = request.getParameter("username").toLowerCase();
+            String password = request.getParameter("password");
+            EntityManagerFactory emf = Persistence.createEntityManagerFactory("SpecialsAppPU");
+            EntityManager em = emf.createEntityManager();
+            try {
+
+                Cuser customer = (Cuser) em.createNamedQuery("Cuser.findByUsername")
+                        .setParameter("username", username)
+                        .getSingleResult();
+                if (!customer.getPassword().equals(password)) {
+                    request.setAttribute("flash", "Incorrect Username/Password combination. ");
+                    request.getRequestDispatcher("WEB-INF/clogin.jsp").forward(request, response);
+                }
+                request.getSession().setAttribute("cuser", customer);
+            } catch (NoResultException nre) {
+                request.setAttribute("flash", "Incorrect Username/Password combinatioin");
+                request.getRequestDispatcher("WEB-INF/clogin.jsp").forward(request, response);
+            } catch (Exception e) {
+                request.setAttribute("flash", e);
+                request.getRequestDispatcher("WEB-INF/clogin.jsp").forward(request, response);
+            }
             response.sendRedirect("home");
-        }
-        if (action.equals("about")) {
-            response.sendRedirect("about");
-        }
-        if (action.equals("cregistration")) {
-            response.sendRedirect("CustomerRegistration");
-        }
-        if (action.equals("bregistration")) {
-            response.sendRedirect("BusinessRegistration");
-        }
-        if (action.equals("blogin")) {
-            response.sendRedirect("BusinessLogin");
         }
     }
 
