@@ -29,10 +29,19 @@ public class BusinessPost extends HttpServlet {
         String action = request.getParameter("action");
         if (action == null || action.equals("bpost")) {
             request.setAttribute("specials", postedSpecials(request, buser));
-            request.getRequestDispatcher("WEB-INF/bpost.jsp").forward(request, response);
+        }else if (action.equals("verifybpost")) {
+            verifyNewPost(request, buser);
+        }else if (action.equals("delspecial")) {
+            deleteSelectedSpecial(request, buser);
+        }else if(action.equals("sortbydate")){
+           sortSpecialsByDate(request, response, buser);
+        }else if(action.equals("all")){
+            allPostedSpecials(request, response, buser);
         }
-        if (action.equals("verifybpost")) {
-            String date = request.getParameter("date");
+       request.getRequestDispatcher("WEB-INF/bpost.jsp").forward(request, response);
+    }
+   private void verifyNewPost(HttpServletRequest request, Buser buser){
+       String date = request.getParameter("date");
             String time = request.getParameter("time");
             String time2 = request.getParameter("time2");
             String type = request.getParameter("type");
@@ -70,10 +79,9 @@ public class BusinessPost extends HttpServlet {
                 request.setAttribute("flash", cve);
             }
             request.setAttribute("specials", postedSpecials(request, buser));
-            request.getRequestDispatcher("WEB-INF/bpost.jsp").forward(request, response);
-        }
-        if (action.equals("delspecial")) {
-            int sid = Integer.parseInt(request.getParameter("delsbutton"));
+   }
+   private void deleteSelectedSpecial(HttpServletRequest request, Buser buser){
+       int sid = Integer.parseInt(request.getParameter("delsbutton"));
             EntityManagerFactory emf = Persistence.createEntityManagerFactory("SpecialsAppPU");
             EntityManager em = emf.createEntityManager();
             Specials special = (Specials) em.createNamedQuery("Specials.findById")
@@ -84,10 +92,9 @@ public class BusinessPost extends HttpServlet {
             em.getTransaction().commit();
             em.close();
             request.setAttribute("specials", postedSpecials(request,buser));
-            request.getRequestDispatcher("WEB-INF/bpost.jsp").forward(request, response);
-        }
-        if(action.equals("sortbydate")){
-            String sortingDate = request.getParameter("sortingdate");
+   }
+   private void sortSpecialsByDate(HttpServletRequest request, HttpServletResponse response, Buser buser){
+        String sortingDate = request.getParameter("sortingdate");
             SimpleDateFormat sdfdate = new SimpleDateFormat("yyyy-MM-dd");
             java.util.Date juSortDate = null;
             try {
@@ -103,17 +110,10 @@ public class BusinessPost extends HttpServlet {
                     .setParameter("buserid", buser)
                     .getResultList();
             request.setAttribute("specials", sortedDateList);
-            request.getRequestDispatcher("WEB-INF/bpost.jsp").forward(request, response);
-        }
-        if(action.equals("all")){
-            request.setAttribute("specials", postedSpecials(request,buser));
-            request.getRequestDispatcher("WEB-INF/bpost.jsp").forward(request, response);
-        }
-        if (action.equals("bmenu")) {
-            response.sendRedirect("BusinessMenu");
-        }
-    }
-   
+   }
+   private void allPostedSpecials(HttpServletRequest request, HttpServletResponse response, Buser buser){
+       request.setAttribute("specials", postedSpecials(request,buser));
+   }
     private List postedSpecials(HttpServletRequest request, Buser buser) {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("SpecialsAppPU");
         EntityManager em = emf.createEntityManager();
@@ -121,44 +121,19 @@ public class BusinessPost extends HttpServlet {
                 .setParameter("buserid", buser).getResultList();
         return slist;
     }
-
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
-
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
-
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
     @Override
     public String getServletInfo() {
         return "Short description";
-    }// </editor-fold>
+    }
 
 }

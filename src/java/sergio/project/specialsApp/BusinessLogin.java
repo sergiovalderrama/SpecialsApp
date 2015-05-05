@@ -22,80 +22,62 @@ public class BusinessLogin extends HttpServlet {
             request.getRequestDispatcher("WEB-INF/blogin.jsp").forward(request, response);
         }
         if (action.equals("verifyblogin")) {
-            String username = request.getParameter("username").toLowerCase();
-            String password = request.getParameter("password");
-            EntityManagerFactory emf = Persistence.createEntityManagerFactory("SpecialsAppPU");
-            EntityManager em = emf.createEntityManager();
-            try {
-
-                Buser buser = (Buser) em.createNamedQuery("Buser.findByUsername")
-                        .setParameter("username", username)
-                        .getSingleResult();
-                if (!buser.getPassword().equals(password)) {
-                    request.setAttribute("flash", "Incorrect Username/Password combination. ");
-                    request.getRequestDispatcher("WEB-INF/blogin.jsp").forward(request, response);
-                }
-                request.getSession().setAttribute("buser", buser);
-                try {
-                    Query query = em.createNativeQuery("SELECT id from BPROFILE WHERE buserid=?")
-                            .setParameter(1, buser.getId());
-                    int value = (int) query.getSingleResult();
-                } catch (NoResultException nre) {
-                    request.setAttribute("flash", "Please complete your profile to access the menu.");
-                    request.getRequestDispatcher("WEB-INF/bprofile.jsp").forward(request, response);
-                }
-                if (buser.getStatus().equals("pending")) {
-                    request.setAttribute("flash", "Your membership has not been approved yet.");
-                    request.getRequestDispatcher("WEB-INF/blogin.jsp").forward(request, response);
-                }
-                response.sendRedirect("BusinessMenu");
-            } catch (NoResultException nre) {
-                request.setAttribute("flash", "Incorrect Username/Password combinatioin");
-                request.getRequestDispatcher("WEB-INF/blogin.jsp").forward(request, response);
-            } catch (Exception e) {
-                request.setAttribute("flash", e);
-                request.getRequestDispatcher("WEB-INF/blogin.jsp").forward(request, response);
-            }
+            verifyBusinessLogin(request, response);
         }
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+    private void verifyBusinessLogin(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String username = request.getParameter("username").toLowerCase();
+        String password = request.getParameter("password");
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("SpecialsAppPU");
+        EntityManager em = emf.createEntityManager();
+        try {
+
+            Buser buser = (Buser) em.createNamedQuery("Buser.findByUsername")
+                    .setParameter("username", username)
+                    .getSingleResult();
+            if (!buser.getPassword().equals(password)) {
+                request.setAttribute("flash", "Incorrect Username/Password combination. ");
+                request.getRequestDispatcher("WEB-INF/blogin.jsp").forward(request, response);
+            }
+            request.getSession().setAttribute("buser", buser);
+            try {
+                Query query = em.createNativeQuery("SELECT id from BPROFILE WHERE buserid=?")
+                        .setParameter(1, buser.getId());
+                int value = (int) query.getSingleResult();
+            } catch (NoResultException nre) {
+                request.setAttribute("flash", "Please complete your profile to access the menu.");
+                request.getRequestDispatcher("WEB-INF/bprofile.jsp").forward(request, response);
+            }
+            if (buser.getStatus().equals("pending")) {
+                request.setAttribute("flash", "Your membership has not been approved yet.");
+                request.getRequestDispatcher("WEB-INF/blogin.jsp").forward(request, response);
+            }
+            response.sendRedirect("BusinessMenu");
+        } catch (NoResultException nre) {
+            request.setAttribute("flash", "Incorrect Username/Password combinatioin");
+            request.getRequestDispatcher("WEB-INF/blogin.jsp").forward(request, response);
+        } catch (Exception e) {
+            request.setAttribute("flash", e);
+            request.getRequestDispatcher("WEB-INF/blogin.jsp").forward(request, response);
+        }
+    }
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
     @Override
     public String getServletInfo() {
         return "Short description";
-    }// </editor-fold>
+    }
 
 }

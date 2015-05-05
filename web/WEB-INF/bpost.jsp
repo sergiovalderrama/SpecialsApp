@@ -27,8 +27,7 @@
             <table>
                 <tr>
                     <td>
-                        <form method="POST" action="BusinessPost">
-                            <input type="hidden" name="action" value="bmenu"/>
+                        <form method="POST" action="BusinessMenu">
                             <input type="submit" value="Business Menu"/>
                         </form>
                     </td>
