@@ -38,21 +38,20 @@
                             <input type="submit" value="About"/>
                         </form>
                     </td>
-                    <td>
-                        <form action="CustomerRegistration" method="Post">
-                            <input type="submit" value="Customer Registration"/>
-                        </form>
-                    </td>
-                    <td>
-                        <form action="BusinessRegistration" method="Post">
-                            <input type="submit" value="Business Registration"/>
-                        </form>
-                    </td>
-                    <td>
-                        <form action="CustomerLogin" method="Post">
-                            <input type="submit" value="Customer Login"/>
-                        </form>
-                    </td>
+                    <c:if test="${sessionScope.cuser != null}">
+                        <td>
+                            <form action="ViewSubscriptions" method="Post">
+                                <input type="submit" value="View Subscriptions"/>
+                            </form>
+                        </td>
+                    </c:if>
+                    <c:if test="${sessionScope.cuser == null}">
+                        <td>
+                            <form action="CustomerLogin" method="Post">
+                                <input type="submit" value="Customer Login"/>
+                            </form>
+                        </td>
+                    </c:if>
                     <td>
                         <form action="BusinessLogin" method="Post">
                             <input type="submit" value="Business Login"/>
@@ -101,7 +100,7 @@
                     <table id="sTable">
                         <tr>
                             <th>
-                                <a href="BusinessInformation?pid=${special[1]}">${special[0]} --ID: ${special[1]}</a>
+                                <a href="BusinessInformation?pid=${special[1]}">${special[0]}</a>
                             </th>
                         </tr>
                         <tr>
@@ -112,7 +111,7 @@
                                 <b>Type:</b>${special[5]}<br>
                                 <b>Price:</b>$${special[6]}<br>
                                 <b>Special:</b><br>
-                                <c:out value="${special[7]}"/>    
+                                <c:out value="${special[7]}"/>
                             </td>
                         </tr>
 

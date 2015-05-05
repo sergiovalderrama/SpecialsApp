@@ -140,7 +140,7 @@
                                 <label>Special : </label>
                             </td>
                             <td>
-                                <input type="text" name="special" size="35" required/>
+                                <textarea name="special" rows="5" column="40" required></textarea>
                             </td>
                         </tr>
                     </table>

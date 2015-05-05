@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.ConstraintViolationException;
+import org.markdown4j.Markdown4jProcessor;
 
 @WebServlet(name = "BusinessPost", urlPatterns = {"/BusinessPost"})
 public class BusinessPost extends HttpServlet {

@@ -35,10 +35,6 @@ public class BusinessLogin extends HttpServlet {
                     request.setAttribute("flash", "Incorrect Username/Password combination. ");
                     request.getRequestDispatcher("WEB-INF/blogin.jsp").forward(request, response);
                 }
-                if (buser.getStatus().equals("pending")) {
-                    request.setAttribute("flash", "Your membership has not been approved yet.");
-                    request.getRequestDispatcher("WEB-INF/blogin.jsp").forward(request, response);
-                }
                 request.getSession().setAttribute("buser", buser);
                 try {
                     Query query = em.createNativeQuery("SELECT id from BPROFILE WHERE buserid=?")
@@ -47,6 +43,10 @@ public class BusinessLogin extends HttpServlet {
                 } catch (NoResultException nre) {
                     request.setAttribute("flash", "Please complete your profile to access the menu.");
                     request.getRequestDispatcher("WEB-INF/bprofile.jsp").forward(request, response);
+                }
+                if (buser.getStatus().equals("pending")) {
+                    request.setAttribute("flash", "Your membership has not been approved yet.");
+                    request.getRequestDispatcher("WEB-INF/blogin.jsp").forward(request, response);
                 }
                 response.sendRedirect("BusinessMenu");
             } catch (NoResultException nre) {

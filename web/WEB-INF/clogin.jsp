@@ -23,16 +23,6 @@
                         </form>
                     </td>
                     <td>
-                        <form action="CustomerRegistration" method="Post">
-                            <input type="submit" value="Customer Registration"/>
-                        </form>
-                    </td>
-                    <td>
-                        <form action="BusinessRegistration" method="Post">
-                            <input type="submit" value="Business Registration"/>
-                        </form>
-                    </td>
-                    <td>
                         <form action="CustomerLogin" method="Post">
                             <input type="submit" value="Customer Login"/>
                         </form>
@@ -73,6 +63,8 @@
                 <input type="hidden" name="action" value="verifyclogin"/>
                 <input type="submit" value="Login"/>
             </form>
+            <br>
+            <a href="CustomerRegistration">Create a customer login</a>
         </div>
         <div id="ft"></div>
     </body>
