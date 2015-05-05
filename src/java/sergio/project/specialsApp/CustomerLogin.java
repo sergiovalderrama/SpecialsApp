@@ -19,9 +19,12 @@ public class CustomerLogin extends HttpServlet {
        String action = request.getParameter("action");
         if (action == null) {
             request.getRequestDispatcher("WEB-INF/clogin.jsp").forward(request, response);
+        }else if (action.equals("verifyclogin")) {
+            verifyCustomerLogin(request, response);
         }
-        if (action.equals("verifyclogin")) {
-            String username = request.getParameter("username").toLowerCase();
+    }
+    private void verifyCustomerLogin(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+        String username = request.getParameter("username").toLowerCase();
             String password = request.getParameter("password");
             EntityManagerFactory emf = Persistence.createEntityManagerFactory("SpecialsAppPU");
             EntityManager em = emf.createEntityManager();
@@ -43,46 +46,21 @@ public class CustomerLogin extends HttpServlet {
                 request.getRequestDispatcher("WEB-INF/clogin.jsp").forward(request, response);
             }
             response.sendRedirect("home");
-        }
     }
-
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
-
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
     @Override
     public String getServletInfo() {
         return "Short description";
-    }// </editor-fold>
+    }
 
 }

@@ -19,9 +19,12 @@ public class CustomerRegistration extends HttpServlet {
         String action = request.getParameter("action");
         if (action == null) {
             request.getRequestDispatcher("WEB-INF/cregistration.jsp").forward(request, response);
+        }else if (action.equals("verifycregistration")) {
+            verifyCustomerRegistration(request, response);
         }
-        if (action.equals("verifycregistration")) {
-            String username = request.getParameter("username").toLowerCase();
+    }
+    private void verifyCustomerRegistration(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+        String username = request.getParameter("username").toLowerCase();
             String username2 = request.getParameter("username2").toLowerCase();
             String password = request.getParameter("password");
             String password2 = request.getParameter("password2");
@@ -46,46 +49,21 @@ public class CustomerRegistration extends HttpServlet {
                 request.setAttribute("flash", "Thank you for registering.");
                 request.getRequestDispatcher("WEB-INF/cregistration.jsp").forward(request, response);
             }
-        }
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
-
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
-
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
     @Override
     public String getServletInfo() {
         return "Short description";
-    }// </editor-fold>
+    }
 
 }

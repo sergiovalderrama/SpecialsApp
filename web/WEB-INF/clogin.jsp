@@ -64,7 +64,7 @@
                 <input type="submit" value="Login"/>
             </form>
             <br>
-            <a href="CustomerRegistration">Create a customer login</a>
+            <a href="CustomerRegistration">Customer Registration</a>
         </div>
         <div id="ft"></div>
     </body>
