@@ -24,11 +24,12 @@ public class BusinessPost extends HttpServlet {
             throws ServletException, IOException {
         Buser buser = (Buser) request.getSession().getAttribute("buser");
         if (buser == null) {
+            allPostedSpecials(request, response, buser);
             request.getRequestDispatcher("WEB-INF/blogin.jsp").forward(request, response);
         }
         String action = request.getParameter("action");
         if (action == null || action.equals("bpost")) {
-            request.setAttribute("specials", postedSpecials(request, buser));
+            request.setAttribute("specials", postedSpecials(buser));
         }else if (action.equals("verifybpost")) {
             verifyNewPost(request, buser);
         }else if (action.equals("delspecial")) {
@@ -40,12 +41,11 @@ public class BusinessPost extends HttpServlet {
         }
        request.getRequestDispatcher("WEB-INF/bpost.jsp").forward(request, response);
     }
-   private void verifyNewPost(HttpServletRequest request, Buser buser){
+   private void verifyNewPost(HttpServletRequest request, Buser buser) throws IOException{
        String date = request.getParameter("date");
             String time = request.getParameter("time");
             String time2 = request.getParameter("time2");
             String type = request.getParameter("type");
-            String price = request.getParameter("price");
             String special = request.getParameter("special");
             SimpleDateFormat sdfdate = new SimpleDateFormat("yyyy-MM-dd");
             SimpleDateFormat sdftime = new SimpleDateFormat("HH:mm");
@@ -67,8 +67,8 @@ public class BusinessPost extends HttpServlet {
                 postspecial.setSdate(judate);
                 postspecial.setStime(jutime);
                 postspecial.setStime2(jutime2);
-                postspecial.setPrice(price);
-                postspecial.setSpecial(special);
+                String md4jSpecial = new Markdown4jProcessor().process(special);
+                postspecial.setSpecial(md4jSpecial);
                 postspecial.setStype(type);
                 postspecial.setBuserid(buser);
                 em.getTransaction().begin();
@@ -78,7 +78,7 @@ public class BusinessPost extends HttpServlet {
             } catch (ConstraintViolationException cve) {
                 request.setAttribute("flash", cve);
             }
-            request.setAttribute("specials", postedSpecials(request, buser));
+            request.setAttribute("specials", postedSpecials(buser));
    }
    private void deleteSelectedSpecial(HttpServletRequest request, Buser buser){
        int sid = Integer.parseInt(request.getParameter("delsbutton"));
@@ -91,7 +91,7 @@ public class BusinessPost extends HttpServlet {
             em.remove(em.merge(special));
             em.getTransaction().commit();
             em.close();
-            request.setAttribute("specials", postedSpecials(request,buser));
+            request.setAttribute("specials", postedSpecials(buser));
    }
    private void sortSpecialsByDate(HttpServletRequest request, HttpServletResponse response, Buser buser){
         String sortingDate = request.getParameter("sortingdate");
@@ -112,9 +112,9 @@ public class BusinessPost extends HttpServlet {
             request.setAttribute("specials", sortedDateList);
    }
    private void allPostedSpecials(HttpServletRequest request, HttpServletResponse response, Buser buser){
-       request.setAttribute("specials", postedSpecials(request,buser));
+       request.setAttribute("specials", postedSpecials(buser));
    }
-    private List postedSpecials(HttpServletRequest request, Buser buser) {
+    private List postedSpecials(Buser buser) {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("SpecialsAppPU");
         EntityManager em = emf.createEntityManager();
         List<Specials> slist = em.createNamedQuery("Specials.findByBuserid")

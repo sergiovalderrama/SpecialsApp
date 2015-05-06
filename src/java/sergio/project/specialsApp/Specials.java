@@ -17,9 +17,11 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
 @Table(catalog = "", schema = "")
+@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Specials.findAll", query = "SELECT s FROM Specials s"),
     @NamedQuery(name = "Specials.findBySdate", query = "SELECT s FROM Specials s WHERE s.sdate = :sdate ORDER BY s.sdate, s.stime"),
@@ -27,7 +29,6 @@ import javax.validation.constraints.Size;
     @NamedQuery(name = "Specials.findByStime2", query = "SELECT s FROM Specials s WHERE s.stime2 = :stime2"),
     @NamedQuery(name = "Specials.findByStype", query = "SELECT s FROM Specials s WHERE s.stype = :stype"),
     @NamedQuery(name = "Specials.findBySpecial", query = "SELECT s FROM Specials s WHERE s.special = :special"),
-    @NamedQuery(name = "Specials.findByPrice", query = "SELECT s FROM Specials s WHERE s.price = :price"),
     @NamedQuery(name = "Specials.findByBuserid", query = "SELECT s FROM Specials s WHERE s.buserid = :buserid ORDER BY s.sdate"),
     @NamedQuery(name = "Specials.findById", query = "SELECT s FROM Specials s WHERE s.id = :id")})
 public class Specials implements Serializable {
@@ -57,11 +58,6 @@ public class Specials implements Serializable {
     @Size(min = 1, max = 500)
     @Column(nullable = false, length = 500)
     private String special;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 30)
-    @Column(nullable = false, length = 30)
-    private String price;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
@@ -78,14 +74,13 @@ public class Specials implements Serializable {
         this.id = id;
     }
 
-    public Specials(Integer id, Date sdate, Date stime, Date stime2, String stype, String special, String price) {
+    public Specials(Integer id, Date sdate, Date stime, Date stime2, String stype, String special) {
         this.id = id;
         this.sdate = sdate;
         this.stime = stime;
         this.stime2 = stime2;
         this.stype = stype;
         this.special = special;
-        this.price = price;
     }
 
     public Date getSdate() {
@@ -126,14 +121,6 @@ public class Specials implements Serializable {
 
     public void setSpecial(String special) {
         this.special = special;
-    }
-
-    public String getPrice() {
-        return price;
-    }
-
-    public void setPrice(String price) {
-        this.price = price;
     }
 
     public Integer getId() {

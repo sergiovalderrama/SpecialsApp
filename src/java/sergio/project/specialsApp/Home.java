@@ -24,7 +24,7 @@ public class Home extends HttpServlet {
         if (action == null) {
 
             List<Specials> specials = em.createQuery("SELECT b.bname, b.id, "
-                    + "s.sdate, s.stime, s.stime2, s.stype, s.price, s.special FROM Bprofile b, Specials s "
+                    + "s.sdate, s.stime, s.stime2, s.stype, s.special FROM Bprofile b, Specials s "
                     + "WHERE b.buserid = s.buserid AND s.sdate >= CURRENT_DATE ORDER BY s.sdate, s.stime")
                     .getResultList();
             request.setAttribute("specials", specials);
@@ -44,7 +44,7 @@ public class Home extends HttpServlet {
             if (!specialType.equals("All")) {
                 
                 List<Specials> sortedDateList2 = em.createQuery("SELECT b.bname, b.id, "
-                        + "s.sdate, s.stime, s.stime2, s.stype, s.price, s.special FROM Bprofile b, Specials s "
+                        + "s.sdate, s.stime, s.stime2, s.stype, s.special FROM Bprofile b, Specials s "
                         + "WHERE b.buserid = s.buserid "
                         + "and s.sdate =:sdate and s.stype =:stype ORDER BY s.stime")
                         .setParameter("sdate", juSortDate)
@@ -54,7 +54,7 @@ public class Home extends HttpServlet {
                 request.getRequestDispatcher("WEB-INF/index.jsp").forward(request, response);
             }
             List<Specials> sortedDateList = em.createQuery("SELECT b.bname, b.id, "
-                    + "s.sdate, s.stime, s.stime2, s.stype, s.price, s.special FROM Bprofile b, Specials s "
+                    + "s.sdate, s.stime, s.stime2, s.stype, s.special FROM Bprofile b, Specials s "
                     + "WHERE b.buserid = s.buserid "
                     + "and s.sdate =:sdate ORDER BY s.stime")
                     .setParameter("sdate", juSortDate)

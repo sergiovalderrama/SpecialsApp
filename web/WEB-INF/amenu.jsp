@@ -19,7 +19,7 @@
                     <th>
                         E-Mail
                     </th>
-                    <th>
+                    <th colspan="2">
                         Status
                     </th>
                 </tr>

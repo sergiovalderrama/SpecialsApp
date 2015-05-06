@@ -1,9 +1,12 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package sergio.project.specialsApp;
 
 import java.io.Serializable;
-import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,15 +14,20 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlRootElement;
 
+/**
+ *
+ * @author sergio
+ */
 @Entity
 @Table(catalog = "", schema = "", uniqueConstraints = {
     @UniqueConstraint(columnNames = {"USERNAME"})})
+@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Buser.findAll", query = "SELECT b FROM Buser b"),
     @NamedQuery(name = "Buser.findByUsername", query = "SELECT b FROM Buser b WHERE b.username = :username"),
@@ -31,12 +39,12 @@ public class Buser implements Serializable {
     private static final long serialVersionUID = 1L;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 4, max = 20)
+    @Size(min = 1, max = 20)
     @Column(nullable = false, length = 20)
     private String username;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 4, max = 10)
+    @Size(min = 1, max = 10)
     @Column(nullable = false, length = 10)
     private String password;
     // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
@@ -53,8 +61,6 @@ public class Buser implements Serializable {
     @Basic(optional = false)
     @Column(nullable = false)
     private Integer id;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "buserid")
-    private List<Specials> specialsList;
 
     public Buser() {
     }
@@ -108,14 +114,6 @@ public class Buser implements Serializable {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public List<Specials> getSpecialsList() {
-        return specialsList;
-    }
-
-    public void setSpecialsList(List<Specials> specialsList) {
-        this.specialsList = specialsList;
     }
 
     @Override

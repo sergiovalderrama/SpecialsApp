@@ -109,9 +109,8 @@
                                 <fmt:formatDate type="time" value="${special[3]}"/> to 
                                 <fmt:formatDate type="time" value="${special[4]}"/><br>
                                 <b>Type:</b>${special[5]}<br>
-                                <b>Price:</b>$${special[6]}<br>
                                 <b>Special:</b><br>
-                                <c:out value="${special[7]}"/>
+                                <c:out value="${special[6]}" escapeXml="false"/>
                             </td>
                         </tr>
 

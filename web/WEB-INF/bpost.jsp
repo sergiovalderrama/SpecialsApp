@@ -76,8 +76,7 @@
                                     Type: <c:out value="${special.stype}"/></br>
                                     Time: <fmt:formatDate type="time" value="${special.stime}"/> to 
                                     <fmt:formatDate type="time" value="${special.stime2}"/><br>
-                                    Price: $<c:out value="${special.price}"/><br>
-                                    <c:out value="${special.special}"/>
+                                    <c:out value="${special.special}" escapeXml="false"/>
                                 </td>
                                 <td>
                                     <button name ="delsbutton" value="${special.id}">Delete</button>
@@ -124,14 +123,6 @@
                                     <option value="Dinner">Dinner</option>
                                     <option value="Breakfast">Breakfast</option>
                                 </select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label>Price : </label>
-                            </td>
-                            <td>
-                                $<input type="number" name="price" required/>
                             </td>
                         </tr>
                         <tr>
