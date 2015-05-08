@@ -12,6 +12,8 @@
         <c:out value="${flash}"/>
         <div id="hd"></div>
         <div id="bd">
+                        <h1>Business Menu Page</h1>
+
             <table>
                 <tr>
                     <td>
@@ -38,7 +40,6 @@
                     </td>
                 </tr>
             </table>
-            <h1>Business Menu Page</h1>
         </div>
         <div id="ft"></div>
     </body>

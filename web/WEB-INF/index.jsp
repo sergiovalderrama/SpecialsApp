@@ -105,12 +105,17 @@
                         </tr>
                         <tr>
                             <td>
-                                <b>Date:</b><fmt:formatDate type="date" value="${special[2]}"/> <b>Time:</b>
-                                <fmt:formatDate type="time" value="${special[3]}"/> to 
-                                <fmt:formatDate type="time" value="${special[4]}"/><br>
-                                <b>Type:</b>${special[5]}<br>
-                                <b>Special:</b><br>
-                                <c:out value="${special[6]}" escapeXml="false"/>
+                                <b>Date:</b><fmt:formatDate type="date" value="${special[2]}"/> 
+                                &nbsp;&nbsp;<b>Time:</b><fmt:formatDate type="time" value="${special[3]}"/> to 
+                                <fmt:formatDate type="time" value="${special[4]}"/>
+                                &nbsp;&nbsp;<b>Type:</b>${special[5]}<br>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="background-color: gainsboro">
+                                <font size="5">
+                                <b>Special:</b><c:out value="${special[6]}" escapeXml="false"/>
+                                </font>
                             </td>
                         </tr>
 
