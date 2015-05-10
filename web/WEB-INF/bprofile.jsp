@@ -41,11 +41,11 @@
                         </form>
                     </td>
                     <c:if test="${buser != null}">
-                    <td>
-                        <form action="BusinessLogin" method="Post">
-                            <input type="submit" value="Business Login"/>
-                        </form>
-                    </td>
+                        <td>
+                            <form action="BusinessLogin" method="Post">
+                                <input type="submit" value="Business Login"/>
+                            </form>
+                        </td>
                     </c:if>
                     <td>
                         <form action="AdministratorLogin" method="Post">
@@ -54,62 +54,82 @@
                     </td>
                 </tr>
             </table>
-            
+
             <h1>Business Profile</h1>
             <h3><c:out value="${flash}"/></h3>
-            <form method="POST" action="InsertBusinessProfile">
-                <table>
-                    <tr>
-                        <th colspan="2">
-                            Bussiness Profile
-                        </th>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label>Business Name : </label>
-                        </td>
-                        <td>
-                            <input type="text" name="bname" required/>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label>Business Phone : </label>
-                        </td>
-                        <td>
-                            <input type="tel" name="bphone" required/>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label>Business Address : </label>
-                        </td>
-                        <td>
-                            <input type="text" name="baddress" required/>
-                        </td>
-                    </tr> 
-                    <tr>
-                        <td>
-                            <label>Business Website : </label>
-                        </td>
-                        <td>
-                            <input type="text" name="bwebsite" required/>
-                        </td>
-
-                    </tr>
-                    <tr>
-                        <td>
-                            <label>Business Picture : </label>
-                        </td>
-                        <td>
-                            <input type="file" name="bpicture"/>
-                        </td>
-                    </tr>
-                </table>
-                <br>
-                <input type="hidden" name="action" value="bprofile"/>
-                <input type="submit" value="Submit"/>
-            </form>
+            <div id="bProfile">
+                <form method="POST" action="InsertBusinessProfile">
+                    <table id="bProfileTable">
+                        <tr>
+                            <th colspan="2" id="thProfile">
+                                Bussiness Profile
+                            </th>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Business Name : </label>
+                            </td>
+                            <td>
+                                <input type="text" name="bname" required/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Business Phone : </label>
+                            </td>
+                            <td>
+                                <input type="tel" name="bphone" required/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Business Address : </label>
+                            </td>
+                            <td>
+                                <input type="text" name="baddress" required/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Business City : </label>
+                            </td>
+                            <td>
+                                <input type="text" name="bcity" required/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Business State : </label>
+                            </td>
+                            <td>
+                                <input type="text" name="bstate" required/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Business Zip Code : </label>
+                            </td>
+                            <td>
+                                <input type="text" name="bzipcode" required/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Business Website : </label>
+                            </td>
+                            <td>
+                                <input type="text" name="bwebsite" required/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <input type="hidden" name="action" value="bprofile"/>
+                                <input type="submit" value="Submit"/>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </div>      
         </div>
         <div id="ft"></div>
     </body>

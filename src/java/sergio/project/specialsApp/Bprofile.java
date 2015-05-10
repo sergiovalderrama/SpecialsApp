@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package sergio.project.specialsApp;
 
 import java.io.Serializable;
@@ -16,16 +21,22 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+/**
+ *
+ * @author Sergio
+ */
 @Entity
-@Table(catalog = "", schema = "")
+@Table(catalog = "", schema = "SERGIO")
 @NamedQueries({
     @NamedQuery(name = "Bprofile.findAll", query = "SELECT b FROM Bprofile b"),
     @NamedQuery(name = "Bprofile.findByBname", query = "SELECT b FROM Bprofile b WHERE b.bname = :bname"),
     @NamedQuery(name = "Bprofile.findByPhone", query = "SELECT b FROM Bprofile b WHERE b.phone = :phone"),
     @NamedQuery(name = "Bprofile.findByAddress", query = "SELECT b FROM Bprofile b WHERE b.address = :address"),
+    @NamedQuery(name = "Bprofile.findByCity", query = "SELECT b FROM Bprofile b WHERE b.city = :city"),
+    @NamedQuery(name = "Bprofile.findByBstate", query = "SELECT b FROM Bprofile b WHERE b.bstate = :bstate"),
+    @NamedQuery(name = "Bprofile.findByZipcode", query = "SELECT b FROM Bprofile b WHERE b.zipcode = :zipcode"),
     @NamedQuery(name = "Bprofile.findByWebsite", query = "SELECT b FROM Bprofile b WHERE b.website = :website"),
     @NamedQuery(name = "Bprofile.findByPictype", query = "SELECT b FROM Bprofile b WHERE b.pictype = :pictype"),
-    @NamedQuery(name = "Bprofile.findByBuserid", query = "SELECT b FROM Bprofile b WHERE b.buserid = :buserid"),
     @NamedQuery(name = "Bprofile.findById", query = "SELECT b FROM Bprofile b WHERE b.id = :id")})
 public class Bprofile implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -45,6 +56,21 @@ public class Bprofile implements Serializable {
     @Size(min = 1, max = 50)
     @Column(nullable = false, length = 50)
     private String address;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 50)
+    @Column(nullable = false, length = 50)
+    private String city;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 15)
+    @Column(nullable = false, length = 15)
+    private String bstate;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 15)
+    @Column(nullable = false, length = 15)
+    private String zipcode;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 70)
@@ -71,11 +97,14 @@ public class Bprofile implements Serializable {
         this.id = id;
     }
 
-    public Bprofile(Integer id, String bname, String phone, String address, String website) {
+    public Bprofile(Integer id, String bname, String phone, String address, String city, String bstate, String zipcode, String website) {
         this.id = id;
         this.bname = bname;
         this.phone = phone;
         this.address = address;
+        this.city = city;
+        this.bstate = bstate;
+        this.zipcode = zipcode;
         this.website = website;
     }
 
@@ -101,6 +130,30 @@ public class Bprofile implements Serializable {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getBstate() {
+        return bstate;
+    }
+
+    public void setBstate(String bstate) {
+        this.bstate = bstate;
+    }
+
+    public String getZipcode() {
+        return zipcode;
+    }
+
+    public void setZipcode(String zipcode) {
+        this.zipcode = zipcode;
     }
 
     public String getWebsite() {

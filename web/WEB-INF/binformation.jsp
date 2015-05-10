@@ -129,6 +129,21 @@
             </tr>
             <tr>
                 <td>
+                    <b>City:</b> <c:out value="${bprofile.city}"/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <b>State:</b> <c:out value="${bprofile.bstate}"/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <b>Zipcode:</b> <c:out value="${bprofile.zipcode}"/>
+                </td>
+            </tr>
+            <tr>
+                <td>
                     <b>Website:</b> <c:out value="${bprofile.website}"/>
                 </td>
             </tr>

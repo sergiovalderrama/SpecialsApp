@@ -26,6 +26,9 @@ public class InsertBusinessProfile extends HttpServlet {
         String bname = request.getParameter("bname");
         String bphone = request.getParameter("bphone");
         String baddress = request.getParameter("baddress");
+        String bcity = request.getParameter("bcity");
+        String bstate = request.getParameter("bstate");
+        String bzipcode = request.getParameter("bzipcode");
         String bwebsite = request.getParameter("bwebsite");
         Buser buser = (Buser) request.getSession().getAttribute("buser");
         if (buser == null) {
@@ -37,6 +40,9 @@ public class InsertBusinessProfile extends HttpServlet {
         bprofile.setBname(bname);
         bprofile.setPhone(bphone);
         bprofile.setAddress(baddress);
+        bprofile.setCity(bcity);
+        bprofile.setBstate(bstate);
+        bprofile.setZipcode(bzipcode);
         bprofile.setWebsite(bwebsite);
         bprofile.setBuserid(buser);
         em.getTransaction().begin();
