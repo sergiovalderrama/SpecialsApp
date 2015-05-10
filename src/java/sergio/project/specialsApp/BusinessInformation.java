@@ -28,7 +28,7 @@ public class BusinessInformation extends HttpServlet {
         getBusinessProfile(request);
         request.getRequestDispatcher("WEB-INF/binformation.jsp").forward(request, response);
     }
-    
+
     private void getBusinessProfile(HttpServletRequest request) {
         int pid = Integer.parseInt(request.getParameter("pid"));
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("SpecialsAppPU");
@@ -36,8 +36,8 @@ public class BusinessInformation extends HttpServlet {
         Bprofile bprofile = (Bprofile) em.createNamedQuery("Bprofile.findById")
                 .setParameter("id", pid).getSingleResult();
         request.setAttribute("bprofile", bprofile);
-        
-        String query="SELECT b.rating FROM Brating b WHERE b.buserid=:buserid";
+
+        String query = "SELECT b.rating FROM Brating b WHERE b.buserid=:buserid";
         List<Integer> ratingList = em.createQuery(query)
                 .setParameter("buserid", bprofile.getBuserid())
                 .getResultList();
@@ -45,8 +45,8 @@ public class BusinessInformation extends HttpServlet {
         for (Integer ratingList1 : ratingList) {
             sum += ratingList1;
         }
-        Double average = sum/ratingList.size();
-        String averageRating = "averageRating" +java.lang.Math.round(average);
+        Double average = sum / ratingList.size();
+        String averageRating = "averageRating" + java.lang.Math.round(average);
         request.setAttribute(averageRating, "checked");
     }
 
@@ -72,7 +72,6 @@ public class BusinessInformation extends HttpServlet {
             em.getTransaction().begin();
             em.merge(subscribe);
             em.getTransaction().commit();
-            em.close();
             request.setAttribute("flash", "You are now subscribed.");
         }
     }
@@ -80,48 +79,48 @@ public class BusinessInformation extends HttpServlet {
     private void rateBusiness(HttpServletRequest request) {
         Cuser cuser = (Cuser) request.getSession().getAttribute("cuser");
         int bid = Integer.parseInt(request.getParameter("bid"));
+        int rating = Integer.parseInt(request.getParameter("rating"));
+        int bratingID = 0;
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("SpecialsAppPU");
         EntityManager em = emf.createEntityManager();
-        Buser buser = (Buser)em.createNamedQuery("Buser.findById")
+        Buser buser = (Buser) em.createNamedQuery("Buser.findById")
                 .setParameter("id", bid)
                 .getSingleResult();
-        int currentRating = 0;//take out
-        int bratingID = 0;
+
         if (cuser == null) {
             request.setAttribute("flash", "Please login to your customer account to rate.");
             getBusinessProfile(request);
-        } else{
-            try{
-            String query ="Select b FROM Brating b WHERE b.cuserid =:cuserid AND b.buserid =:buserid";
-            Brating checkRating = (Brating)em.createQuery(query)
-                    .setParameter("cuserid", cuser)
-                    .setParameter("buserid", buser)
-                    .getSingleResult();
-            currentRating = checkRating.getRating();//take out
-            bratingID = checkRating.getId();
-            }catch(NoResultException nre){
-            int rating = Integer.parseInt(request.getParameter("rating"));
-            Brating brating = new Brating();
-            brating.setCuserid(cuser);
-            brating.setBuserid(buser);
-            brating.setRating(rating);
-             em.getTransaction().begin();
+        } else {
+            try {
+                String query = "Select b FROM Brating b WHERE b.cuserid =:cuserid AND b.buserid =:buserid";
+                Brating checkRating = (Brating) em.createQuery(query)
+                        .setParameter("cuserid", cuser)
+                        .setParameter("buserid", buser)
+                        .getSingleResult();
+                bratingID = checkRating.getId();
+            } catch (NoResultException nre) {
+                Brating brating = new Brating();
+                brating.setCuserid(cuser);
+                brating.setBuserid(buser);
+                brating.setRating(rating);
+                em.getTransaction().begin();
                 em.persist(brating);
                 em.getTransaction().commit();
-                em.close();
             }
-            int rating = Integer.parseInt(request.getParameter("rating"));
-            Brating overrideRating = (Brating)em.createNamedQuery("Brating.findById")
-                    .setParameter("id", bratingID)
-                    .getSingleResult();
-            overrideRating.setRating(rating);
-            em.getTransaction().begin();
-            em.merge(overrideRating);
-            em.getTransaction().commit();
+            if (bratingID != 0) {
+                Brating overrideRating = (Brating) em.createNamedQuery("Brating.findById")
+                        .setParameter("id", bratingID)
+                        .getSingleResult();
+                overrideRating.setRating(rating);
+                em.getTransaction().begin();
+                em.merge(overrideRating);
+                em.getTransaction().commit();
+            }
             String star = "star" + rating;
             request.setAttribute(star, "checked");
         }
     }
+
     private boolean checkForUniqueSubscriptions(Buser buser, Cuser cuser) {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("SpecialsAppPU");
         EntityManager em = emf.createEntityManager();
