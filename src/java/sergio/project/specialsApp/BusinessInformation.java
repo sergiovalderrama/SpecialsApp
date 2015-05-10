@@ -42,8 +42,8 @@ public class BusinessInformation extends HttpServlet {
                 .setParameter("buserid", bprofile.getBuserid())
                 .getResultList();
         double sum = 0;
-        for(int i=0; i<ratingList.size(); i++){
-            sum += ratingList.get(i);
+        for (Integer ratingList1 : ratingList) {
+            sum += ratingList1;
         }
         Double average = sum/ratingList.size();
         String averageRating = "averageRating" +java.lang.Math.round(average);

@@ -1,8 +1,43 @@
 table{
     background-color: #cccccc;
 }
+#reviewBName{
+    background-color: #cccc00;
+    font-size: 30px;
+    border-radius: 15px;
+    height: 40px;
+    width: 500px;
+    color: #cccccc;
+    box-shadow: 2px 2px 5px black;
+    text-shadow: 2px 2px 5px black;
+    position: relative;
+    left: 48%;
+    margin-right: 50%;
+    text-align: center;
+    top: 2%;
+}
 #pgTitle{
     background-color: #cccc00;
+}
+#reviewBusiness{ 
+    height: 100px;
+    width: 400px;
+}
+.scroll{
+    overflow: auto;
+    height: 500px;
+    width: 800px;
+    float: right;
+}
+#customerReviews{
+    width: 700px;
+    box-shadow: 10px 10px 5px #cccc00;
+}
+#inner{
+    padding-top: 20px;
+}
+#timeForReview{
+    background-color: gainsboro;
 }
 th{
     background-color: #cccc00;

@@ -1,6 +1,12 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package sergio.project.specialsApp;
 
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,6 +18,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -24,6 +32,7 @@ import javax.validation.constraints.Size;
 @NamedQueries({
     @NamedQuery(name = "Review.findAll", query = "SELECT r FROM Review r"),
     @NamedQuery(name = "Review.findByPost", query = "SELECT r FROM Review r WHERE r.post = :post"),
+    @NamedQuery(name = "Review.findByRdatetime", query = "SELECT r FROM Review r WHERE r.rdatetime = :rdatetime"),
     @NamedQuery(name = "Review.findById", query = "SELECT r FROM Review r WHERE r.id = :id")})
 public class Review implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -32,6 +41,11 @@ public class Review implements Serializable {
     @Size(min = 1, max = 1024)
     @Column(nullable = false, length = 1024)
     private String post;
+    @Basic(optional = false)
+    @NotNull
+    @Column(nullable = false)
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date rdatetime;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
@@ -51,9 +65,10 @@ public class Review implements Serializable {
         this.id = id;
     }
 
-    public Review(Integer id, String post) {
+    public Review(Integer id, String post, Date rdatetime) {
         this.id = id;
         this.post = post;
+        this.rdatetime = rdatetime;
     }
 
     public String getPost() {
@@ -62,6 +77,14 @@ public class Review implements Serializable {
 
     public void setPost(String post) {
         this.post = post;
+    }
+
+    public Date getRdatetime() {
+        return rdatetime;
+    }
+
+    public void setRdatetime(Date rdatetime) {
+        this.rdatetime = rdatetime;
     }
 
     public Integer getId() {

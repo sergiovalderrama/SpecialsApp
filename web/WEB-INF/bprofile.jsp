@@ -36,25 +36,17 @@
                         </form>
                     </td>
                     <td>
-                        <form action="CustomerRegistration" method="Post">
-                            <input type="submit" value="Customer Registration"/>
-                        </form>
-                    </td>
-                    <td>
-                        <form action="BusinessRegistration" method="Post">
-                            <input type="submit" value="Business Registration"/>
-                        </form>
-                    </td>
-                    <td>
                         <form action="CustomerLogin" method="Post">
                             <input type="submit" value="Customer Login"/>
                         </form>
                     </td>
+                    <c:if test="${buser != null}">
                     <td>
                         <form action="BusinessLogin" method="Post">
                             <input type="submit" value="Business Login"/>
                         </form>
                     </td>
+                    </c:if>
                     <td>
                         <form action="AdministratorLogin" method="Post">
                             <input type="submit" value="Administrator Login"/>
