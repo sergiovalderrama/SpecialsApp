@@ -2,7 +2,7 @@ table{
     background-color: #cccccc;
 }
 #BusinessImage{
-    width: 200px;
+    width: 450px;
     height: 250px;
 }
 #bProfile{
@@ -118,9 +118,21 @@ th{
     text-align: left;
     font-size: 25px;
 }
+.SpecialsScroll{
+    overflow: auto;
+    height: 650px;
+    width: 1100px;
+    position: absolute;
+    left: 400px;
+}
+#SpecialsFilter{
+    position: relative;
+    left: 410px;
+}
 #sTable{
     background-color: #cccccc;
-    width: 600px;
+    width: 1000px;
+    box-shadow: 10px 10px 5px black; 
 }
 #bInformationTable{
     width: 600px;

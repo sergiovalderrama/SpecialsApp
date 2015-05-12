@@ -15,6 +15,9 @@ public class BusinessPicture extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        getBusinessProfile(request, response);
+    }
+    private void getBusinessProfile(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
         Buser buser = (Buser)request.getSession().getAttribute("buser");
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("SpecialsAppPU");
         EntityManager em = emf.createEntityManager();

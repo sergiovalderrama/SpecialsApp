@@ -7,7 +7,6 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" type="text/css" href="styles/main.css">
         <title>Specials Main Page</title>
-
     </head>
     <body>
         <div id="hd"></div>
@@ -67,72 +66,75 @@
 
             <h1>Specials Home Page</h1>
             <form action="home" method="post">
-                <table>
-                    <tr>
-                        <td>
-                            <label>Date </label>
-                        </td>
-                        <td>
-                            <input type="date" name="sortingdate" required />
-                        </td>
-                        <td>
-                            <label>Type</label> 
-                        </td>
-                        <td>
-                            <select name="type" required>
-                                <option value="All">All Types</option>
-                                <option value="Happy Hour">Happy Hour</option>
-                                <option value="Brunch">Brunch</option>
-                                <option value="Lunch">Lunch</option>
-                                <option value="Dinner">Dinner</option>
-                                <option value="Breakfast">Breakfast</option>
-                            </select>
-                        </td>
-                        <td>
-                            <input type="hidden" name="action" value="sortbydate"/>
-                            <input type="submit" value="sort"/>
-                        </td>
-                    </tr>
-                </table>
-            </form>
-            <c:forEach var="special" items="${specials}">
-                <div id="scontent">
-                    <table id="sTable">
-                        <tr>
-                            <th rowspan="3">
-                                <c:choose>
-                                    <c:when test="${special[0] != null}">
-                                        <img id="BusinessImage" src="ViewBusinessPicture?for=${special[1].id}"/>
-                                    </c:when>
-                                    <c:otherwise>
-                                        <img src="images/noimage.jfif"/>
-                                    </c:otherwise>
-                                </c:choose>
-                            </th>
-                            <th>
-                                <a href="BusinessInformation?pid=${special[3]}">${special[2]}</a>
-                            </th>
-
-                        </tr>
+                <div id="SpecialsFilter">
+                    <table>
                         <tr>
                             <td>
-                                <b>Date:</b><fmt:formatDate type="date" value="${special[4]}"/> 
-                                &nbsp;&nbsp;<b>Time:</b><fmt:formatDate type="time" value="${special[5]}"/> to 
-                                <fmt:formatDate type="time" value="${special[6]}"/>
-                                &nbsp;&nbsp;<b>Type:</b>${special[7]}<br>
+                                <label>Date </label>
+                            </td>
+                            <td>
+                                <input type="date" name="sortingdate" required />
+                            </td>
+                            <td>
+                                <label>Type</label> 
+                            </td>
+                            <td>
+                                <select name="type" required>
+                                    <option value="All">All Types</option>
+                                    <option value="Happy Hour">Happy Hour</option>
+                                    <option value="Brunch">Brunch</option>
+                                    <option value="Lunch">Lunch</option>
+                                    <option value="Dinner">Dinner</option>
+                                    <option value="Breakfast">Breakfast</option>
+                                </select>
+                            </td>
+                            <td>
+                                <input type="hidden" name="action" value="sortbydate"/>
+                                <input type="submit" value="sort"/>
                             </td>
                         </tr>
-                        <tr>
-                            <td style="background-color: gainsboro">
-                                <font size="5">
-                                <b>Special:</b><c:out value="${special[8]}" escapeXml="false"/>
-                                </font>
-                            </td>
-                        </tr>
-
                     </table>
                 </div>
-            </c:forEach>
+            </form>
+            <div class="SpecialsScroll">
+                <c:forEach var="special" items="${specials}">
+                    <div id="scontent">
+                        <table id="sTable">
+                            <tr>
+                                <td rowspan="3">
+                                    <c:choose>
+                                        <c:when test="${special[0] != null}">
+                                            <img id="BusinessImage" src="ViewBusinessPicture?for=${special[1].id}"/>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <img src="images/noimage.jfif"/>
+                                        </c:otherwise>
+                                    </c:choose>
+                                </td>
+                                <th>
+                                    <a href="BusinessInformation?pid=${special[3]}">${special[2]}</a>
+                                </th>
+
+                            </tr>
+                            <tr>
+                                <td>
+                                    <b>Date:</b><fmt:formatDate type="date" value="${special[4]}"/> 
+                                    &nbsp;&nbsp;<b>Time:</b><fmt:formatDate type="time" value="${special[5]}"/> to 
+                                    <fmt:formatDate type="time" value="${special[6]}"/>
+                                    &nbsp;&nbsp;<b>Type:</b>${special[7]}<br>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="background-color: gainsboro">
+                                    <font size="5">
+                                    <b>Special:</b><c:out value="${special[8]}" escapeXml="false"/>
+                                    </font>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </c:forEach>
+            </div>
         </div>
         <div id="ft"></div>
     </body>
