@@ -8,6 +8,60 @@ table{
     border-radius: 20px;
     box-shadow: 2px 2px 5px black;
 }
+#bMenu{
+    background-color: gainsboro;
+    position: relative;
+    left: 100px;
+    height: 500px;
+    width: 450px;
+    box-shadow: 2px 2px 5px black;
+    border-radius: 20px;
+}
+#menuTitle{
+    background-color: #cccc00;
+    height: 50px;
+    box-shadow: 2px 2px 5px black;
+}
+#menuTable{
+    position: relative;
+    left: 50px;
+    top: 50px;
+    width: 350px;
+    box-shadow: 2px 2px 5px black;
+    border-radius: 20px;
+}
+
+#menuButton{
+    border-top: 1px solid #ecf797;
+    background: #cccc00;
+    background: -webkit-gradient(linear, left top, left bottom, from(#f6e6f7), to(#cccc00));
+    background: -webkit-linear-gradient(top, #f6e6f7, #cccc00);
+    background: -moz-linear-gradient(top, #f6e6f7, #cccc00);
+    background: -ms-linear-gradient(top, #f6e6f7, #cccc00);
+    background: -o-linear-gradient(top, #f6e6f7, #cccc00);
+    padding: 18px 36px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+    -webkit-box-shadow: rgba(0,0,0,1) 0 1px 0;
+    -moz-box-shadow: rgba(0,0,0,1) 0 1px 0;
+    box-shadow: rgba(0,0,0,1) 0 1px 0;
+    text-shadow: rgba(0,0,0,.4) 0 1px 0;
+    color: #000000;
+    font-size: 16px;
+    font-family: Georgia, serif;
+    text-decoration: none;
+    vertical-align: middle;
+}
+#menuButton:hover{
+    border-top-color: #cccccc;
+    background: #cccccc;
+    color: #000000;
+}
+#menuButton:active{
+    border-top-color: #cccc00;
+    background: #cccc00;
+}
 #bProfileTable{
     position: relative;
     top: 20px;
@@ -74,71 +128,71 @@ th{
     width: 60%;
 }
 .starRating:not(old){
-  display        : inline-block;
-  width          : 7.5em;
-  height         : 1.5em;
-  overflow       : hidden;
-  vertical-align : bottom;
+    display        : inline-block;
+    width          : 7.5em;
+    height         : 1.5em;
+    overflow       : hidden;
+    vertical-align : bottom;
 }
 
 .starRating:not(old) > input{
-  margin-right : -100%;
-  opacity      : 0;
+    margin-right : -100%;
+    opacity      : 0;
 }
 
 .starRating:not(old) > label{
-  display         : block;
-  float           : right;
-  position        : relative;
-  background      : url('pictures/star-off.svg');
-  background-size : contain;
+    display         : block;
+    float           : right;
+    position        : relative;
+    background      : url('pictures/star-off.svg');
+    background-size : contain;
 }
 
 .starRating:not(old) > label:before{
-  content         : '';
-  display         : block;
-  width           : 1.5em;
-  height          : 1.5em;
-  background      : url('pictures/star-on.svg');
-  background-size : contain;
-  opacity         : 0;
-  transition      : opacity 0.2s linear;
+    content         : '';
+    display         : block;
+    width           : 1.5em;
+    height          : 1.5em;
+    background      : url('pictures/star-on.svg');
+    background-size : contain;
+    opacity         : 0;
+    transition      : opacity 0.2s linear;
 }
 .starRating:not(old) > label:hover:before,
 .starRating:not(old) > label:hover ~ label:before,
 .starRating:not(:hover) > :checked ~ label:before{
-  opacity : 1;
+    opacity : 1;
 }
 .starRatingAvg:not(old){
-  display        : inline-block;
-  width          : 7.5em;
-  height         : 1.5em;
-  overflow       : hidden;
-  vertical-align : bottom;
+    display        : inline-block;
+    width          : 7.5em;
+    height         : 1.5em;
+    overflow       : hidden;
+    vertical-align : bottom;
 }
 .starRatingAvg:not(old) > input{
-  margin-right : -100%;
-  opacity      : 0;
+    margin-right : -100%;
+    opacity      : 0;
 }
 .starRatingAvg:not(old) > label{
-  display         : block;
-  float           : right;
-  position        : relative;
-  background      : url('pictures/star-off.svg');
-  background-size : contain;
+    display         : block;
+    float           : right;
+    position        : relative;
+    background      : url('pictures/star-off.svg');
+    background-size : contain;
 }
 .starRatingAvg:not(old) > label:before{
-  content         : '';
-  display         : block;
-  width           : 1.5em;
-  height          : 1.5em;
-  background      : url('pictures/star-on.svg');
-  background-size : contain;
-  opacity         : 0;
-  transition      : opacity 0.2s linear;
+    content         : '';
+    display         : block;
+    width           : 1.5em;
+    height          : 1.5em;
+    background      : url('pictures/star-on.svg');
+    background-size : contain;
+    opacity         : 0;
+    transition      : opacity 0.2s linear;
 }
 .starRatingAvg:not(old) > label:hover:before,
 .starRatingAvg:not(old) > label:hover ~ label:before,
 .starRatingAvg:not(:hover) > :checked ~ label:before{
-  opacity : 1;
+    opacity : 1;
 }

@@ -8,38 +8,47 @@
         <title>Business Menu</title>
     </head>
     <body>
-
         <c:out value="${flash}"/>
         <div id="hd"></div>
         <div id="bd">
-                        <h1>Business Menu Page</h1>
-
-            <table>
-                <tr>
-                    <td>
-                        <h3>Username: <c:out value="${buser.username}"/></h3>
-                    </td>
-                    <td>
-                         <form method="POST" action="BusinessLogout">
-                            <input type="submit" value="Logout"/>
-                        </form>
-                    </td>
-                </tr>
-            </table>
-            <table>
-                <tr>
-                    <td>
-                        <form method="POST" action="BusinessMenu">
-                            <input type="submit" value="Business Menu"/>
-                        </form>
-                    </td>
-                    <td>
-                        <form method="POST" action="BusinessPost">
-                            <input type="submit" value="Post Special"/>
-                        </form>
-                    </td>
-                </tr>
-            </table>
+            <div id="menuTitle"><h1>Business Menu Page</h1></div>
+            <div id="bMenu">
+                <table id="menuTable">
+                    <tr>
+                        <td>
+                            <h3>Username: <c:out value="${buser.username}"/></h3>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <form method="POST" action="BusinessLogout">
+                                <input id="menuButton" type="submit" value="Logout"/>
+                            </form>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <form method="POST" action="BusinessPost">
+                                <input id="menuButton" type="submit" value="Post Special"/>
+                            </form>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <form method="POST" action="BusinessPicture">
+                                <input type="hidden" name="action" value="picPage"/>
+                                <input id="menuButton" type="submit" value="Business Picture"/>
+                            </form>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <form method="POST" action="EditProfile">
+                                <input id="menuButton" type="submit" value="View/Edit Profile"/>
+                            </form>
+                        </td>
+                    </tr>
+            </div>
         </div>
         <div id="ft"></div>
     </body>

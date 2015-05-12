@@ -14,6 +14,8 @@
                     <td>
                         User: &nbsp;<c:out value="${cuser.username}"/>
                     </td>
+                </tr>    
+                <tr>
                     <td>
                         <form action="CustomerLogout" method="Post">
                             <input type="submit" value="Logout"/>
