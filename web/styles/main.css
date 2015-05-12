@@ -1,6 +1,10 @@
 table{
     background-color: #cccccc;
 }
+#BusinessImage{
+    width: 200px;
+    height: 250px;
+}
 #bProfile{
     background-color: gainsboro;
     width: 400px;

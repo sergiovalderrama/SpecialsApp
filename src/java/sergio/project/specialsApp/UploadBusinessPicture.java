@@ -51,6 +51,7 @@ public class UploadBusinessPicture extends HttpServlet {
             request.setAttribute("flash","File Did Not Load");
             request.getRequestDispatcher("WEB-INF/bpicture.jsp").forward(request, response);
         }
+        request.setAttribute("bprofile", p);
         request.setAttribute("flash", "File Uploaded");
         request.getRequestDispatcher("WEB-INF/bpicture.jsp").forward(request, response);
     }

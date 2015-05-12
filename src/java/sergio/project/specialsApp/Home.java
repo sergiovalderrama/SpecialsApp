@@ -23,7 +23,7 @@ public class Home extends HttpServlet {
         EntityManager em = emf.createEntityManager();
         if (action == null) {
 
-            List<Specials> specials = em.createQuery("SELECT b.bname, b.id, "
+            List<Specials> specials = em.createQuery("SELECT b.picture, b.buserid, b.bname, b.id, "
                     + "s.sdate, s.stime, s.stime2, s.stype, s.special FROM Bprofile b, Specials s "
                     + "WHERE b.buserid = s.buserid AND s.sdate >= CURRENT_DATE ORDER BY s.sdate, s.stime")
                     .getResultList();

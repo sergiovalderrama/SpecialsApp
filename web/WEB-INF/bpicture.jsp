@@ -15,6 +15,14 @@
                 <input type="file" name="pic" id="pic"/>
                 <input type="submit" value="Upload Picture"/>
             </form>
+            <c:choose>
+                <c:when test="${bprofile.picture != null}">
+                    <img id="BusinessImage" src="ViewBusinessPicture?for=${bprofile.buserid.id}"/>
+                </c:when>
+                <c:otherwise>
+                    <img src="images/noimage.jfif"/>
+                </c:otherwise>
+            </c:choose>
         </div>
         <div id="ft"></div>
     </body>

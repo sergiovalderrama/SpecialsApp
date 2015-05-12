@@ -99,22 +99,33 @@
                 <div id="scontent">
                     <table id="sTable">
                         <tr>
-                            <th>
-                                <a href="BusinessInformation?pid=${special[1]}">${special[0]}</a>
+                            <th rowspan="3">
+                                <c:choose>
+                                    <c:when test="${special[0] != null}">
+                                        <img id="BusinessImage" src="ViewBusinessPicture?for=${special[1].id}"/>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <img src="images/noimage.jfif"/>
+                                    </c:otherwise>
+                                </c:choose>
                             </th>
+                            <th>
+                                <a href="BusinessInformation?pid=${special[3]}">${special[2]}</a>
+                            </th>
+
                         </tr>
                         <tr>
                             <td>
-                                <b>Date:</b><fmt:formatDate type="date" value="${special[2]}"/> 
-                                &nbsp;&nbsp;<b>Time:</b><fmt:formatDate type="time" value="${special[3]}"/> to 
-                                <fmt:formatDate type="time" value="${special[4]}"/>
-                                &nbsp;&nbsp;<b>Type:</b>${special[5]}<br>
+                                <b>Date:</b><fmt:formatDate type="date" value="${special[4]}"/> 
+                                &nbsp;&nbsp;<b>Time:</b><fmt:formatDate type="time" value="${special[5]}"/> to 
+                                <fmt:formatDate type="time" value="${special[6]}"/>
+                                &nbsp;&nbsp;<b>Type:</b>${special[7]}<br>
                             </td>
                         </tr>
                         <tr>
                             <td style="background-color: gainsboro">
                                 <font size="5">
-                                <b>Special:</b><c:out value="${special[6]}" escapeXml="false"/>
+                                <b>Special:</b><c:out value="${special[8]}" escapeXml="false"/>
                                 </font>
                             </td>
                         </tr>
