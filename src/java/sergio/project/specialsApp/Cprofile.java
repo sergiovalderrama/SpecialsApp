@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package sergio.project.specialsApp;
 
 import java.io.Serializable;
@@ -16,13 +21,16 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+/**
+ *
+ * @author Sergio
+ */
 @Entity
 @Table(catalog = "", schema = "")
 @NamedQueries({
     @NamedQuery(name = "Cprofile.findAll", query = "SELECT c FROM Cprofile c"),
     @NamedQuery(name = "Cprofile.findByFname", query = "SELECT c FROM Cprofile c WHERE c.fname = :fname"),
     @NamedQuery(name = "Cprofile.findByLname", query = "SELECT c FROM Cprofile c WHERE c.lname = :lname"),
-    @NamedQuery(name = "Cprofile.findByBiography", query = "SELECT c FROM Cprofile c WHERE c.biography = :biography"),
     @NamedQuery(name = "Cprofile.findByPictype", query = "SELECT c FROM Cprofile c WHERE c.pictype = :pictype"),
     @NamedQuery(name = "Cprofile.findById", query = "SELECT c FROM Cprofile c WHERE c.id = :id")})
 public class Cprofile implements Serializable {
@@ -37,9 +45,6 @@ public class Cprofile implements Serializable {
     @Size(min = 1, max = 25)
     @Column(nullable = false, length = 25)
     private String lname;
-    @Size(max = 1024)
-    @Column(length = 1024)
-    private String biography;
     @Lob
     private Serializable picture;
     @Size(max = 30)
@@ -81,14 +86,6 @@ public class Cprofile implements Serializable {
 
     public void setLname(String lname) {
         this.lname = lname;
-    }
-
-    public String getBiography() {
-        return biography;
-    }
-
-    public void setBiography(String biography) {
-        this.biography = biography;
     }
 
     public Serializable getPicture() {

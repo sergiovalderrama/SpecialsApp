@@ -24,6 +24,7 @@
                 </c:otherwise>
             </c:choose>
         </div>
+        <a href="BusinessMenu">Main Menu</a>
         <div id="ft"></div>
     </body>
 </html>

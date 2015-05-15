@@ -43,6 +43,11 @@
                                 <input type="submit" value="View Subscriptions"/>
                             </form>
                         </td>
+                        <td>
+                            <form action="InsertCustomerProfile" method="post">
+                                <input type="submit" value="Add/Edit Profile"/>
+                            </form>
+                        </td>
                     </c:if>
                     <c:if test="${sessionScope.cuser == null}">
                         <td>

@@ -197,7 +197,7 @@ th{
     background      : url('pictures/star-off.svg');
     background-size : contain;
 }
-.starRatingAvg:not(old) > label:before{
+.starRatingAvg > label:before{
     content         : '';
     display         : block;
     width           : 1.5em;
@@ -207,8 +207,7 @@ th{
     opacity         : 0;
     transition      : opacity 0.2s linear;
 }
-.starRatingAvg:not(old) > label:hover:before,
-.starRatingAvg:not(old) > label:hover ~ label:before,
-.starRatingAvg:not(:hover) > :checked ~ label:before{
-    opacity : 1;
+.starRatingAvg > label.star :before{
+    opacity: 1;
 }
+

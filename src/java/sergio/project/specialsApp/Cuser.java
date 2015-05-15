@@ -6,9 +6,7 @@
 package sergio.project.specialsApp;
 
 import java.io.Serializable;
-import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,7 +14,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
@@ -24,7 +21,7 @@ import javax.validation.constraints.Size;
 
 /**
  *
- * @author sergio
+ * @author Sergio
  */
 @Entity
 @Table(catalog = "", schema = "", uniqueConstraints = {
@@ -58,8 +55,6 @@ public class Cuser implements Serializable {
     @Basic(optional = false)
     @Column(nullable = false)
     private Integer id;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cuserid")
-    private List<Review> reviewList;
 
     public Cuser() {
     }
@@ -105,14 +100,6 @@ public class Cuser implements Serializable {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public List<Review> getReviewList() {
-        return reviewList;
-    }
-
-    public void setReviewList(List<Review> reviewList) {
-        this.reviewList = reviewList;
     }
 
     @Override

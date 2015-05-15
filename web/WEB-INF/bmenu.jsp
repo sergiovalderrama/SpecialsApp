@@ -43,8 +43,22 @@
                     </tr>
                     <tr>
                         <td>
-                            <form method="POST" action="EditProfile">
+                            <form method="POST" action="EditBusinessProfile">
                                 <input id="menuButton" type="submit" value="View/Edit Profile"/>
+                            </form>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <form method="post" action="ViewSubscribedCustomers">
+                                <input id="menuButton" type="submit" value="View Subscribed Customers"/>
+                            </form>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <form mehod="post" action="BusinessIndividualComments"/>
+                                <input id="menuButton" type="submit" value="View Customer Comments"/>
                             </form>
                         </td>
                     </tr>
