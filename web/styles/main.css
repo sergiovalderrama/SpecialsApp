@@ -167,6 +167,21 @@ height: 350px;
         );
     box-shadow: 2px 2px 5px #808080;
 }
+#IndexFilter2{
+    position: absolute;
+    top: 163px;
+    left: 25px;
+    width: 600px;
+    background-image: -webkit-gradient(
+        linear,
+        left top,
+        left bottom,
+        color-stop(0.05, rgb(215, 221, 254)),
+        color-stop(1, rgb(161, 175, 206)),
+        color-stop(1, rgb(175, 187, 213))
+        );
+    box-shadow: 2px 2px 5px #808080;
+}
 #CustomerImage{
     width: 60px;
     height: 60px;
@@ -190,46 +205,6 @@ height: 350px;
     background-color: #cccc00;
     height: 50px;
     box-shadow: 2px 2px 5px black;
-}
-#menuTable{
-    position: relative;
-    left: 50px;
-    top: 50px;
-    width: 350px;
-    box-shadow: 2px 2px 5px black;
-    border-radius: 20px;
-}
-
-#menuButton{
-    border-top: 1px solid #ecf797;
-    background: #cccc00;
-    background: -webkit-gradient(linear, left top, left bottom, from(#f6e6f7), to(#cccc00));
-    background: -webkit-linear-gradient(top, #f6e6f7, #cccc00);
-    background: -moz-linear-gradient(top, #f6e6f7, #cccc00);
-    background: -ms-linear-gradient(top, #f6e6f7, #cccc00);
-    background: -o-linear-gradient(top, #f6e6f7, #cccc00);
-    padding: 18px 36px;
-    -webkit-border-radius: 8px;
-    -moz-border-radius: 8px;
-    border-radius: 8px;
-    -webkit-box-shadow: rgba(0,0,0,1) 0 1px 0;
-    -moz-box-shadow: rgba(0,0,0,1) 0 1px 0;
-    box-shadow: rgba(0,0,0,1) 0 1px 0;
-    text-shadow: rgba(0,0,0,.4) 0 1px 0;
-    color: #000000;
-    font-size: 16px;
-    font-family: Georgia, serif;
-    text-decoration: none;
-    vertical-align: middle;
-}
-#menuButton:hover{
-    border-top-color: #cccccc;
-    background: #cccccc;
-    color: #000000;
-}
-#menuButton:active{
-    border-top-color: #cccc00;
-    background: #cccc00;
 }
 #bProfileTable{
     position: relative;
@@ -306,6 +281,27 @@ th{
     left: 100px;
     background-color: #f2f2f2;
     box-shadow: 2px 2px 5px #808080;
+}
+.SpecialsScroll2{
+    overflow: auto;
+    height: 600px;
+    width: 600px;
+    position: absolute;
+    top: 195px;
+    left: 25px;
+    background-color: #f2f2f2;
+    box-shadow: 2px 2px 5px #808080;
+}
+#PostASpecial{
+    background-color: #627aad;
+    width: 500px;
+    height: 60px;
+    padding-top: 10px;
+    box-shadow: 5px 5px 5px black;
+    color: #f2f2f2;
+    font-family: "lucida grande",tahoma,verdana,arial,sans-serif;
+    position: relative;
+    left: 630px;
 }
 #NavigationButton:hover{
     background-color: #627aad;

@@ -53,7 +53,7 @@ public class BusinessLogin extends HttpServlet {
                 request.setAttribute("flash", "Your membership has not been approved yet.");
                 request.getRequestDispatcher("WEB-INF/blogin.jsp").forward(request, response);
             }
-            response.sendRedirect("BusinessMenu");
+            response.sendRedirect("BusinessPost");
         } catch (NoResultException nre) {
             request.setAttribute("flash", "Incorrect Username/Password combinatioin");
             request.getRequestDispatcher("WEB-INF/blogin.jsp").forward(request, response);
