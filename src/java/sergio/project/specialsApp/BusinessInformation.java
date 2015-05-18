@@ -19,6 +19,7 @@ public class BusinessInformation extends HttpServlet {
             throws ServletException, IOException {
         String action = request.getParameter("action");
         if (action == null) {
+            getCustomerRatingForStar(request);
             getBusinessProfile(request);
         } else if (action.equals("subscribe")) {
             subscribeToBusiness(request);
@@ -27,6 +28,27 @@ public class BusinessInformation extends HttpServlet {
         }
         getBusinessProfile(request);
         request.getRequestDispatcher("WEB-INF/binformation.jsp").forward(request, response);
+    }
+
+    private void getCustomerRatingForStar(HttpServletRequest request) {
+        try {
+            int bid = Integer.parseInt(request.getParameter("bid"));
+            Cuser cuser = (Cuser) request.getSession().getAttribute("cuser");
+            EntityManagerFactory emf = Persistence.createEntityManagerFactory("SpecialsAppPU");
+            EntityManager em = emf.createEntityManager();
+            Buser buser = (Buser)em.createNamedQuery("Buser.findById")
+                    .setParameter("id", bid)
+                    .getSingleResult();
+            String query = "SELECT b FROM Brating b WHERE b.cuserid =:cuserid AND b.buserid =:buserid";
+            Brating brating = (Brating) em.createQuery(query)
+                    .setParameter("cuserid", cuser)
+                    .setParameter("buserid", buser)
+                    .getSingleResult();
+            String star = "star" + brating.getRating();
+            request.setAttribute(star, "checked");
+        } catch (NoResultException nre) {
+        }
+
     }
 
     private void getBusinessProfile(HttpServletRequest request) {

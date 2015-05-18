@@ -43,7 +43,7 @@
                         </form>
                     </td>
                     <td>
-                        <form action="CustomerProfile" method="post">
+                        <form action="InsertCustomerProfile" method="post">
                             <input type="submit" value="Add/Edit Profile"/>
                         </form>
                     </td>
@@ -100,21 +100,21 @@
                 <th>
                     Business Information
                     <span class="starRatingAvg">
-                        <input id="averageRating5" type="radio" class = "star" name="averageRating" value="5" 
+                        <input id="averageRating5" type="radio" name="averageRating" 
                                <c:out value="${averageRating5}"/> disabled/>
                         <label for="averageRating5">5</label>
-                        <input id="averageRating4" type="radio" class = "star" name="averageRating" value="4" 
+                        <input id="averageRating4" type="radio" name="averageRating"  
                                <c:out value="${averageRating4}"/> disabled/>
                         <label for="averageRating4">4</label>
-                        <input id="averageRating3" type="radio" class = "star" name="averageRating" value="3"
+                        <input id="averageRating3" type="radio" name="averageRating" 
                                <c:out value="${averageRating3}"/> disabled/>
                         <label for="averageRating3">3</label>
-                        <input id="averageRating2" type="radio" name="averageRating" value="2" 
+                        <input id="averageRating2" type="radio" name="averageRating"  
                                <c:out value="${averageRating2}"/> disabled/>
                         <label for="averageRating2">2</label>
-                        <input id="averageRating1" type="radio" name="averageRating" value="1" 
-                               <c:out value="${averageRating1}"/>disabled>
-                        <label class="star" for="averageRating1">1</label>
+                        <input id="averageRating1" type="radio" name="averageRating" 
+                               <c:out value="${averageRating1}"/> disabled>
+                        <label for="averageRating1">1</label>
                     </span>
                     <font size="3">(avg rating)</font>
                 </th>

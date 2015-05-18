@@ -48,7 +48,7 @@ private void verifyBusinessRegistration(HttpServletRequest request, HttpServletR
                 em.getTransaction().commit();
                 em.close();
                 request.setAttribute("flash", "Thank you for registering.");
-                request.getRequestDispatcher("WEB-INF/bregistration.jsp").forward(request, response);
+                request.getRequestDispatcher("WEB-INF/blogin.jsp").forward(request, response);
             }
     
 }

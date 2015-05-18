@@ -16,8 +16,25 @@ import javax.servlet.http.HttpServletResponse;
 public class ViewSubscribedCustomers extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+          String action = request.getParameter("action");
+          if(action == null){
           getSubscribedCustomers(request);
+          }else if(action.equals("profiles")){
+              getCustomerProfile(request);
+          }
           request.getRequestDispatcher("WEB-INF/viewbsubscribers.jsp").forward(request, response);
+    }
+    private void getCustomerProfile(HttpServletRequest request){
+        Buser buser = (Buser)request.getSession().getAttribute("buser");
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("SpecialsAppPU");
+        EntityManager em = emf.createEntityManager();
+        String query = "SELECT Cprofile.fname, Cprofile.lname, Cuser.email, Cuser.username FROM Cprofile, Subscription, Cuser "
+                + "WHERE Subscription.buserid =? AND Cprofile.cuserid = Subscription.cuserid "
+                + "AND Cuser.id = Cprofile.cuserid";
+        List<Object> cprofile = em.createNativeQuery(query)
+                .setParameter("1", buser.getId())
+                .getResultList();
+        request.setAttribute("cprofile", cprofile);
     }
     private void getSubscribedCustomers(HttpServletRequest request){
         Buser buser = (Buser)request.getSession().getAttribute("buser");

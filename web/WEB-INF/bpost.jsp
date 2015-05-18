@@ -136,7 +136,7 @@
                             <label>Special : </label>
                         </td>
                         <td>
-                            <textarea name="special" rows="5" column="40" required></textarea>
+                            <textarea name="special" rows="5" cols="40" required></textarea>
                         </td>
                     </tr>
                 </table>

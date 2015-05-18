@@ -47,7 +47,7 @@ public class CustomerRegistration extends HttpServlet {
                 em.getTransaction().commit();
                 em.close();
                 request.setAttribute("flash", "Thank you for registering.");
-                request.getRequestDispatcher("WEB-INF/cregistration.jsp").forward(request, response);
+                request.getRequestDispatcher("WEB-INF/clogin.jsp").forward(request, response);
             }
     }
 

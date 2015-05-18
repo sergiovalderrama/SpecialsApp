@@ -36,5 +36,9 @@
                 </c:if>
             </table>
         </form>
+                    <a href="home">Home</a><br>
+                    <c:if test="${cprofile != null}">
+                    <a href="CustomerPicture">Upload A Picture</a>
+                    </c:if>
     </body>
 </html>

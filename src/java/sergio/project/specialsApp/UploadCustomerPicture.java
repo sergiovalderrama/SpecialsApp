@@ -15,36 +15,33 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
-@WebServlet(name = "UploadBusinessPicture", urlPatterns = {"/UploadBusinessPicture"})
+@WebServlet(name = "UploadCustomerPicture", urlPatterns = {"/UploadCustomerPicture"})
 @MultipartConfig(maxFileSize = 1024 * 1024 * 20)
-public class UploadBusinessPicture extends HttpServlet {
+public class UploadCustomerPicture extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         uploadImage(request, response);
     }
-
-    
-
     private void uploadImage(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         if (request.getMethod().equals("GET")) {
-            request.getRequestDispatcher("WEB-INF/bpicture.jsp").forward(request, response);
+            request.getRequestDispatcher("WEB-INF/cpicture.jsp").forward(request, response);
         }
         final Part filePart = request.getPart("pic");
         String filetype = filePart.getContentType();
         if (!filetype.contains("image")) {
             request.setAttribute("flash", "The uploaded file is not an image!");
-            request.getRequestDispatcher("WEB-INF/bpicture.jsp").forward(request, response);
+            request.getRequestDispatcher("WEB-INF/cpicture.jsp").forward(request, response);
         }
         InputStream imgdata = filePart.getInputStream();
         byte[] pixels = readImage(imgdata);
-        Buser buser = (Buser) request.getSession().getAttribute("buser");
+        Cuser cuser = (Cuser) request.getSession().getAttribute("cuser");
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("SpecialsAppPU");
         EntityManager em = emf.createEntityManager();
-        String query = "SELECT p FROM Bprofile p WHERE p.buserid =:buserid";
-        Bprofile p = (Bprofile) em.createQuery(query)
-                .setParameter("buserid", buser)
+        String query = "SELECT p FROM Cprofile p WHERE p.cuserid =:cuserid";
+        Cprofile p = (Cprofile) em.createQuery(query)
+                .setParameter("cuserid", cuser)
                 .getSingleResult();
         p.setPicture(pixels);
         p.setPictype(filetype);
@@ -54,11 +51,11 @@ public class UploadBusinessPicture extends HttpServlet {
             em.getTransaction().commit();
         } catch (Exception e) {
             request.setAttribute("flash", "File Did Not Load");
-            request.getRequestDispatcher("WEB-INF/bpicture.jsp").forward(request, response);
+            request.getRequestDispatcher("WEB-INF/cpicture.jsp").forward(request, response);
         }
-        request.setAttribute("bprofile", p);
+        request.setAttribute("cprofile", p);
         request.setAttribute("flash", "File Uploaded");
-        request.getRequestDispatcher("WEB-INF/bpicture.jsp").forward(request, response);
+        request.getRequestDispatcher("WEB-INF/cpicture.jsp").forward(request, response);
     }
 
     private byte[] readImage(InputStream imgdata) throws IOException {
@@ -87,4 +84,5 @@ public class UploadBusinessPicture extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }
+
 }

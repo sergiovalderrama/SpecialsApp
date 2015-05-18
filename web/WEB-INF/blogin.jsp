@@ -8,42 +8,44 @@
         <title>Business Login Page</title>
     </head>
     <body>
-        <div id="hd"></div>
-        <div id="bd">
+        <div id="hd">Specials App</div>
+        <div id="NavigationMenu">
             <table>
                 <tr>
                     <td>
                         <form action="home" method="Post">
-                            <input type="submit" value="Home"/>
+                            <input id="NavigationButton" type="submit" value="Home"/>
                         </form>
                     </td>
                     <td>
                         <form action="about" method="Post">
-                            <input type="submit" value="About"/>
+                            <input  id="NavigationButton" type="submit" value="About"/>
                         </form>
                     </td>
                     <td>
                     <td>
                         <form action="CustomerLogin" method="Post">
-                            <input type="submit" value="Customer Login"/>
+                            <input id="NavigationButton" type="submit" value="Customer Login"/>
                         </form>
                     </td>
                     <td>
                         <form action="BusinessLogin" method="Post">
-                            <input type="submit" value="Business Login"/>
+                            <input id="NavigationButton" type="submit" value="Business Login"/>
                         </form>
                     </td>
                     <td>
                         <form action="AdministratorLogin" method="Post">
-                            <input type="submit" value="Administrator Login"/>
+                            <input id="NavigationButton" type="submit" value="Administrator Login"/>
                         </form>
                     </td>
                 </tr>
             </table>
-            <h1>Business Login</h1>
-            <h3><c:out value="${flash}"/></h3>
+        </div>
+        <div id="Title"><h1>Business Login</h1></div>
+        <h3><c:out value="${flash}"/></h3>
+        <div id="LoginWhiteSpace">
             <form method="POST" action="BusinessLogin">
-                <table>
+                <table id="Login">
                     <tr>
                         <td>
                             <label>Username : </label>
@@ -60,13 +62,19 @@
                             <input type="password" name="password" required/>
                         </td>
                     </tr>
-                </table>
-                <input type="hidden" name="action" value="verifyblogin"/>
-                <input type="submit" value="Login"/>
+                    <tr>
+                        <td>
+                            <input type="hidden" name="action" value="verifyblogin"/>
+                            <input type="submit" value="Login"/>
+                        </td>
+                    </tr>
             </form>
-            <br>
-            <a href="BusinessRegistration">Business Registration</a>
-        </div>
-        <div id="ft"></div>
-    </body>
+            <tr>
+                <td>
+                    <a href="BusinessRegistration">Business Registration</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
 </html>

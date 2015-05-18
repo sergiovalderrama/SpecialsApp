@@ -48,7 +48,7 @@ public class ReviewsOnBusiness extends HttpServlet {
                 .setParameter("buserid", buser)
                 .getSingleResult();
         String query = "SELECT Review.post, Review.rdatetime, Review.cuserid, "
-                + "Cuser.username, Cuser.id FROM Review, Cuser "
+                + "Cuser.username, Cuser.id FROM Review, Cuser, Cprofile "
                 + "WHERE Review.buserid =? AND Review.cuserid = Cuser.id ORDER BY Review.rdatetime DESC";
         List<Object> getReviews = em.createNativeQuery(query)
                 .setParameter(1, bid)

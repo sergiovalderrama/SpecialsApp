@@ -43,7 +43,7 @@
                             </form>
                         </td>
                         <td>
-                            <form action="CustomerProfile" method="post">
+                            <form action="InsertCustomerProfile" method="post">
                                 <input type="submit" value="Add/Edit Profile"/>
                             </form>
                         </td>
@@ -71,10 +71,12 @@
                                 <td>
                                     Post Date: ${review[1]}
                                 </td>
+                                
                             </tr>
                             <tr>
                                 <td>
-                                    <b>username: ${review[3]}</b>
+                                    <b>${review[3]}</b><br>
+                                    <img id="CustomerImage" src="ViewCustomerPicture?for=${review[4]}" onerror="this.src='images/happyface.jfif'"/>
                                 </td>
                             </tr>
                             <tr>

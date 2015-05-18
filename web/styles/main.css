@@ -1,9 +1,152 @@
-table{
-    background-color: #cccccc;
+body{
+    background-color: #e2e2e2;
 }
-#BusinessImage{
+a{
+    text-decoration: none;
+    font-family: "lucida grande",tahoma,verdana,arial,sans-serif;
+    color: #f2f2f2;
+}
+a:hover{
+    color: #627aad;
+}
+#About{
+    width: 400px;
+    background-color: #f2f2f2;
+    height: 400px;
+    position: relative;
+    left: 75px;
+    font-size: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 15px;
+    box-shadow: 5px 5px 5px #808080;
+}
+#Title{
+    text-indent: 80px;
+    font-size: 15px;
+    font-family:"lucida grande",tahoma,verdana,arial,sans-serif;
+    color: #e2e2e2;
+    background-image: -webkit-gradient(
+        linear,
+        left top,
+        left bottom,
+        color-stop(0.05, rgb(215, 221, 254)),
+        color-stop(1, rgb(161, 175, 206)),
+        color-stop(1, rgb(175, 187, 213))
+        );
+    box-shadow: 2px 2px 5px #808080;
+}
+#SubscriptionsTable{
+    background-color: #808080;
+    width: 400px;
+    font-family: "lucida grande",tahoma,verdana,arial,sans-serif;
+    font-size: 20px;
+    position: relative;
+    left: 50px;
+    top: 30px;
+}
+#SubscriptionWhiteSpace{
+    background-color: #f2f2f2;
+    width: 500px;
+    height: 600px;
+    position: relative;
+    left: 100px;
+    box-shadow: 5px 5px 5px #808080;
+}
+#Login{
+    background-color: #808080;
+    width: 350px;
+    height: 60px;
+    padding-top: 10px;
+    box-shadow: 5px 5px 5px black;
+    color: #f2f2f2;
+    font-family: "lucida grande",tahoma,verdana,arial,sans-serif;
+    position: relative;
+    left: 45px;
+}
+#Registration{
+    background-color: #808080;
+    width: 600px;
+    height: 100px;
+    padding-top: 10px;
+    box-shadow: 5px 5px 5px black;
+    color: #f2f2f2;
+    font-family: "lucida grande",tahoma,verdana,arial,sans-serif;
+    position: relative;
+    left: 45px;
+}
+#LoginWhiteSpace{
+    background-color: #f2f2f2;
     width: 450px;
-    height: 250px;
+    position: relative;
+    left: 75px;
+    height: 150px;
+    padding-top: 25px;
+    box-shadow: 5px 5px 5px black;
+}
+#RegistrationWhiteSpace{
+    background-color: #f2f2f2;
+    width: 700px;
+    position: relative;
+    left: 75px;
+    height: 150px;
+    padding-top: 25px;
+    box-shadow: 5px 5px 5px black;
+}
+#hd {
+    font-family: "lucida grande",tahoma,verdana,arial,sans-serif;
+    font-size: 25px;
+    font-weight: bolder;
+    line-height: 16px;
+    font-stretch: ultra-expanded;
+    color: #f2f2f2;
+    height: 10px;
+    padding: 1em;
+    box-shadow: 2px 2px 5px #808080;
+    /* Cross-browser gradient fill for the header */
+    background-image: linear-gradient(top, rgb(121,141,185) 5%, rgb(59, 89, 152) 100%, rgb(98,122,173) 100%);
+    background-image: -o-linear-gradient(top, rgb(121,141,185) 5%, rgb(59, 89, 152) 100%, rgb(98,122,173) 100%);
+    background-image: -moz-linear-gradient(top, rgb(121,141,185) 5%, rgb(59, 89, 152) 100%, rgb(98,122,173) 100%);
+    background-image: -webkit-linear-gradient(top, rgb(121,141,185) 5%, rgb(59, 89, 152) 100%, rgb(98,122,173) 100%);
+    background-image: -ms-linear-gradient(top, rgb(121,141,185) 5%, rgb(59, 89, 152) 100%, rgb(98,122,173) 100%);
+
+    background-image: -webkit-gradient(
+        linear,
+        left top,
+        left bottom,
+        color-stop(0.05, rgb(121,141,185)),
+        color-stop(1, rgb(59, 89, 152)),
+        color-stop(1, rgb(98,122,173))
+        );
+}
+#NavigationMenu{
+    background-color: #e2e2e2;
+    background-image: -webkit-gradient(
+        linear,
+        left top,
+        left bottom,
+        color-stop(0.05, rgb(226, 226, 226)),
+        color-stop(1, rgb(128, 128, 128)),
+        color-stop(1, rgb(153,153,153))
+        );
+}
+#IndexFilter{
+    position: relative;
+    left: 100px;
+    width: 600px;
+    background-image: -webkit-gradient(
+        linear,
+        left top,
+        left bottom,
+        color-stop(0.05, rgb(215, 221, 254)),
+        color-stop(1, rgb(161, 175, 206)),
+        color-stop(1, rgb(175, 187, 213))
+        );
+    box-shadow: 2px 2px 5px #808080;
+}
+#CustomerImage{
+    width: 60px;
+    height: 60px;
 }
 #bProfile{
     background-color: gainsboro;
@@ -15,7 +158,6 @@ table{
 #bMenu{
     background-color: gainsboro;
     position: relative;
-    left: 100px;
     height: 500px;
     width: 450px;
     box-shadow: 2px 2px 5px black;
@@ -114,25 +256,52 @@ table{
     background-color: gainsboro;
 }
 th{
-    background-color: #cccc00;
     text-align: left;
     font-size: 25px;
+    background-image: -webkit-gradient(
+        linear,
+        left top,
+        left bottom,
+        color-stop(0.05, rgb(215, 221, 254)),
+        color-stop(1, rgb(161, 175, 206)),
+        color-stop(1, rgb(175, 187, 213))
+        );
+    box-shadow: 2px 2px 5px #808080;
+}
+#BusinessImage{
+    width: 450px;
+    height: 250px;
 }
 .SpecialsScroll{
     overflow: auto;
     height: 650px;
-    width: 1100px;
-    position: absolute;
-    left: 200px;
-}
-#SpecialsFilter{
+    width: 600px;
     position: relative;
-    left: 210px;
+    left: 100px;
+    background-color: #f2f2f2;
+    box-shadow: 2px 2px 5px #808080;
 }
-#sTable{
-    background-color: #cccccc;
-    width: 1000px;
-    box-shadow: 10px 10px 5px black; 
+#NavigationButton:hover{
+    background-color: #627aad;
+}
+#Chalkboard{
+    background-image: url('pictures/chalkboard.jfif');
+    font-family: cursive;
+    color: white;
+}
+#SpecialsTable{
+    width: 450px;
+    box-shadow: 5px 5px 5px #808080;
+    position: relative;
+    left: 50px;
+    background-image: -webkit-gradient(
+        linear,
+        left top,
+        left bottom,
+        color-stop(0.05, rgb(226, 226, 226)),
+        color-stop(1, rgb(128, 128, 128)),
+        color-stop(1, rgb(153,153,153))
+        );
 }
 #bInformationTable{
     width: 600px;
@@ -197,7 +366,7 @@ th{
     background      : url('pictures/star-off.svg');
     background-size : contain;
 }
-.starRatingAvg > label:before{
+.starRatingAvg:not(old) > label:before{
     content         : '';
     display         : block;
     width           : 1.5em;
@@ -207,7 +376,11 @@ th{
     opacity         : 0;
     transition      : opacity 0.2s linear;
 }
-.starRatingAvg > label.star :before{
+.starRatingAvg:not(old)> label.star :before{
     opacity: 1;
 }
-
+.starRatingAvg:not(old) > label:hover:before,
+.starRatingAvg:not(old) > label:hover ~ label:before,
+.starRatingAvg:not(:hover) > :checked ~ label:before{
+    opacity : 1;
+}

@@ -19,7 +19,8 @@
                         </tr>
                         <tr>
                             <td>
-                                <b>username: ${review[1]}<b>
+                                <b>${review[1]}<b><br>
+                                <img id="CustomerImage" src="ViewCustomerPicture?for=${review[3]}" onerror="this.src='images/happyface.jfif'"/>        
                             </td>
                         </tr>
                         <tr>
