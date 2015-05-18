@@ -52,6 +52,7 @@ a:hover{
     position: relative;
     left: 100px;
     box-shadow: 5px 5px 5px #808080;
+    overflow: auto;
 }
 #Login{
     background-color: #808080;
@@ -63,6 +64,28 @@ a:hover{
     font-family: "lucida grande",tahoma,verdana,arial,sans-serif;
     position: relative;
     left: 45px;
+}
+#InsertCustomerProfile{
+    background-color: #808080;
+    width: 350px;
+    height: 60px;
+    padding-top: 10px;
+    box-shadow: 5px 5px 5px black;
+    color: #f2f2f2;
+    font-family: "lucida grande",tahoma,verdana,arial,sans-serif;
+    position: relative;
+    left: 45px;
+}
+#InsertPictureTable{
+    background-color: #808080;
+}
+#DisplayPicProfile{
+position: absolute;
+left:500px;
+width: 350px;
+height: 350px;
+ box-shadow: 5px 5px 5px black;
+ border: #627aad;
 }
 #Registration{
     background-color: #808080;
@@ -217,37 +240,40 @@ a:hover{
 #thProfile{
     border-radius: 15px;
 }
-#reviewBName{
-    background-color: #cccc00;
-    font-size: 30px;
-    border-radius: 15px;
-    height: 40px;
-    width: 500px;
-    color: #cccccc;
-    box-shadow: 2px 2px 5px black;
-    text-shadow: 2px 2px 5px black;
-    position: relative;
-    left: 48%;
-    margin-right: 50%;
-    text-align: center;
-    top: 2%;
-}
 #pgTitle{
     background-color: #cccc00;
 }
-#reviewBusiness{ 
-    height: 100px;
+#SubmitPost{ 
+    height: 50px;
     width: 400px;
 }
-.scroll{
+#CustomerReviews{
     overflow: auto;
     height: 500px;
     width: 800px;
-    float: right;
+    background-image: -webkit-gradient(
+        linear,
+        left top,
+        left bottom,
+        color-stop(0.05, rgb(215, 221, 254)),
+        color-stop(1, rgb(161, 175, 206)),
+        color-stop(1, rgb(175, 187, 213))
+        );
 }
-#customerReviews{
+#TableReviews{
     width: 700px;
-    box-shadow: 10px 10px 5px #cccc00;
+    box-shadow: 5px 5px 5px black;
+    background-color: #f2f2f2;
+    box-shadow: 5px 5px 5px black;
+}
+#PostReview{
+    position: relative;
+    padding-top: 10px;
+}
+#GreySpaceForPost{
+    background-color: #808080;
+    width: 600px;
+    box-shadow: 5px 5px 5px black;
 }
 #inner{
     padding-top: 20px;
@@ -303,9 +329,19 @@ th{
         color-stop(1, rgb(153,153,153))
         );
 }
-#bInformationTable{
+#BusinessInformationTable{
     width: 600px;
     font-size: 20px;
+    background-color: #cccccc;
+    box-shadow: 5px 5px 5px black;
+}
+#RateBusiness{
+    background-color: #808080;
+}
+#SubscribeReview{
+    background-color: #f2f2f2;
+    width: 600px;
+    box-shadow: 5px 5px 5px black;
 }
 #scontent{
     margin: 1em;

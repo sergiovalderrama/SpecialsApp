@@ -8,8 +8,8 @@
         <title>Customer Reviews</title>
     </head>
     <body>
-        <div id="ft"></div>
-        <div id="bd">
+        <div id="hd">Specials App</div>
+        <div id="NavigationMenu">
             <c:if test="${sessionScope.cuser != null}">
                 <table style="float :right">
                     <tr>
@@ -60,39 +60,14 @@
                     </td>
                 </tr>
             </table>
-            <br>${flash}
-            <div id="reviewBName"> Reviews for: <c:out value="${Bprofile.bname}" /></div>
-
-            <div class="scroll">
-                <c:forEach var="review" items="${bReviews}">
-                    <div id="inner">
-                        <table id="customerReviews">
-                            <tr id="timeForReview">
-                                <td>
-                                    Post Date: ${review[1]}
-                                </td>
-                                
-                            </tr>
-                            <tr>
-                                <td>
-                                    <b>${review[3]}</b><br>
-                                    <img id="CustomerImage" src="ViewCustomerPicture?for=${review[4]}" onerror="this.src='images/happyface.jfif'"/>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    ${review[0]}
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
-                </c:forEach>
-            </div>
-            <table>
+        </div>
+        <div id="Title"> <h1>Reviews for&nbsp;<c:out value="${Bprofile.bname}" /></h1></div>
+        <div id="GreySpaceForPost">
+            <table id="PostReview">
                 <form action="ReviewsOnBusiness" method="post">
                     <tr>
                         <td>
-                            <textarea id="reviewBusiness" name="creview"></textarea>
+                            <textarea id="SubmitPost" name="creview"></textarea>
                         </td>
                         <td>
                             <input type="hidden" name="bid" value="<c:out value="${bid}"/>"/>
@@ -103,6 +78,32 @@
                 </form>
             </table>
         </div>
-        <div id="ft"></div>
+        <br>
+        <div id="CustomerReviews">
+            <c:forEach var="review" items="${bReviews}">
+                <div id="inner">
+                    <table id="TableReviews">
+                        <tr id="timeForReview">
+                            <td>
+                                Post Date: ${review[1]}
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td>
+                                <b>${review[3]}</b><br>
+                                <img id="CustomerImage" src="ViewCustomerPicture?for=${review[4]}" onerror="this.src='images/happyface.jfif'"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                ${review[0]}
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </c:forEach>
+        </div>
+
     </body>
 </html>

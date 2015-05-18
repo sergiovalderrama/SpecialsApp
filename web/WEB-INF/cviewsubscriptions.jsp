@@ -72,30 +72,28 @@
         </div>
         <div id="Title"><h1>Subscriptions</h1></div>
         <div id="SubscriptionWhiteSpace">
-            <table id="SubscriptionsTable">
-                <tr>
-                    <th colspan="2">
-                <div id="Title">   
-                    <h1>Business Name</h1> 
-                </div>
-                </th>
-                </tr>
-                <c:forEach var="sublist" items="${sublist}">
+                <table id="SubscriptionsTable">
                     <tr>
-                        <td>
-                            <a href="BusinessInformation?pid=${sublist[3]}">
-                                <c:out value="${sublist[1]}"/>
-                            </a>
-                        </td>
-                        <td>
-                            <form action="ViewSubscriptions" method="Post">
-                                <input type="hidden" name="action" value="unsubscribe"/>
-                                <input type="hidden" name="subscriptionid" value="${sublist[2]}"/>
-                                <input type="submit" value="Unsubscribe"/>
-                            </form>
-                        </td>
+                        <th colspan="2">
+                    <div id="Title"><h1>Business Name</h1></div>
+                        </th>
                     </tr>
-                </c:forEach>
+                    <c:forEach var="sublist" items="${sublist}">
+                        <tr>
+                            <td>
+                                <a href="BusinessInformation?pid=${sublist[3]}&bid=${sublist[0].id}">
+                                    <c:out value="${sublist[1]}"/>
+                                </a>
+                            </td>
+                            <td>
+                                <form action="ViewSubscriptions" method="Post">
+                                    <input type="hidden" name="action" value="unsubscribe"/>
+                                    <input type="hidden" name="subscriptionid" value="${sublist[2]}"/>
+                                    <input type="submit" value="Unsubscribe"/>
+                                </form>
+                            </td>
+                        </tr>
+                    </c:forEach>
             </table>
         </div>
     </body>
