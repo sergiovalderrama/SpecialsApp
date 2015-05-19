@@ -8,8 +8,8 @@
         <title>Business Profile</title>
     </head>
     <body>
-        <div id="hd"></div>
-        <div id="bd">
+        <div id="hd">Specials App</div>
+        <div id="NavigationMenu">
             <table style="float : right">
                 <tr>
                     <td>
@@ -35,102 +35,81 @@
                             <input type="submit" value="About"/>
                         </form>
                     </td>
-                    <td>
-                        <form action="CustomerLogin" method="Post">
-                            <input type="submit" value="Customer Login"/>
-                        </form>
-                    </td>
-                    <c:if test="${buser != null}">
-                        <td>
-                            <form action="BusinessLogin" method="Post">
-                                <input type="submit" value="Business Login"/>
-                            </form>
-                        </td>
-                    </c:if>
-                    <td>
-                        <form action="AdministratorLogin" method="Post">
-                            <input type="submit" value="Administrator Login"/>
-                        </form>
-                    </td>
                 </tr>
             </table>
-
-            <h1>Business Profile</h1>
-            <h3><c:out value="${flash}"/></h3>
-            <div id="bProfile">
-                <form method="POST" action="InsertBusinessProfile">
-                    <table id="bProfileTable">
-                        <tr>
-                            <th colspan="2" id="thProfile">
-                                Bussiness Profile
-                            </th>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label>Business Name : </label>
-                            </td>
-                            <td>
-                                <input type="text" name="bname" required/>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label>Business Phone : </label>
-                            </td>
-                            <td>
-                                <input type="tel" name="bphone" required/>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label>Business Address : </label>
-                            </td>
-                            <td>
-                                <input type="text" name="baddress" required/>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label>Business City : </label>
-                            </td>
-                            <td>
-                                <input type="text" name="bcity" required/>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label>Business State : </label>
-                            </td>
-                            <td>
-                                <input type="text" name="bstate" required/>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label>Business Zip Code : </label>
-                            </td>
-                            <td>
-                                <input type="text" name="bzipcode" required/>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label>Business Website : </label>
-                            </td>
-                            <td>
-                                <input type="text" name="bwebsite" required/>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colspan="2">
-                                <input type="hidden" name="action" value="bprofile"/>
-                                <input type="submit" value="Submit"/>
-                            </td>
-                        </tr>
-                    </table>
-                </form>
-            </div>      
         </div>
-        <div id="ft"></div>
+        <div id="Title"><h1>Business Profile</h1></div>
+        <h3><c:out value="${flash}"/></h3>
+            <form method="POST" action="InsertBusinessProfile">
+                <table id="InsertBprofile">
+                    <tr>
+                        <th colspan="2">
+                            Bussiness Profile
+                        </th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Business Name : </label>
+                        </td>
+                        <td>
+                            <input type="text" name="bname" required/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Business Phone : </label>
+                        </td>
+                        <td>
+                            <input type="tel" name="bphone" required/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Business Address : </label>
+                        </td>
+                        <td>
+                            <input type="text" name="baddress" required/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Business City : </label>
+                        </td>
+                        <td>
+                            <input type="text" name="bcity" required/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Business State : </label>
+                        </td>
+                        <td>
+                            <input type="text" name="bstate" required/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Business Zip Code : </label>
+                        </td>
+                        <td>
+                            <input type="text" name="bzipcode" required/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Business Website : </label>
+                        </td>
+                        <td>
+                            <input type="text" name="bwebsite" required/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <input type="hidden" name="action" value="bprofile"/>
+                            <input type="submit" value="Submit"/>
+                        </td>
+                    </tr>
+                </table>
+            </form>
     </body>
 </html>

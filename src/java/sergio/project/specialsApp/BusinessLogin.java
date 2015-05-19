@@ -50,7 +50,7 @@ public class BusinessLogin extends HttpServlet {
                 request.getRequestDispatcher("WEB-INF/bprofile.jsp").forward(request, response);
             }
             if (buser.getStatus().equals("pending")) {
-                request.setAttribute("flash", "Your membership has not been approved yet.");
+                request.setAttribute("flash", "Your membership will be approved within two business days of registration.");
                 request.getRequestDispatcher("WEB-INF/blogin.jsp").forward(request, response);
             }
             response.sendRedirect("BusinessPost");

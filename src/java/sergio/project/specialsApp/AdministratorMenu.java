@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.NoResultException;
 import javax.persistence.Persistence;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -27,6 +28,8 @@ public class AdministratorMenu extends HttpServlet {
             request.getRequestDispatcher("WEB-INF/amenu.jsp").forward(request, response);
         } else if (action.equals("changestatus")) {
             changeBuserStatus(request);
+        }else if (action.equals("bprofile")){
+            getBuserProfile(request);
         }
         pendingBusers(request);
         request.getRequestDispatcher("WEB-INF/amenu.jsp").forward(request, response);
@@ -44,6 +47,20 @@ public class AdministratorMenu extends HttpServlet {
         buser.setStatus(status);
         em.getTransaction().commit();
         em.close();
+    }
+    private void getBuserProfile(HttpServletRequest request){
+        int bid = Integer.parseInt(request.getParameter("bid"));
+        try{
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("SpecialsAppPU");
+        EntityManager em = emf.createEntityManager();
+        String query = "SELECT * FROM Bprofile WHERE Bprofile.buserid =?";
+        Object bprofile = em.createNativeQuery(query)
+                .setParameter(1, bid)
+                .getSingleResult();
+        request.setAttribute("bprofile", bprofile);
+        }catch(NoResultException nre){
+            request.setAttribute("flash", "This user has not completed their profile.");
+        }
     }
 
     private void pendingBusers(HttpServletRequest request) {

@@ -105,6 +105,16 @@ a:hover{
     top: 25px;
     box-shadow: 5px 5px 5px black;
 }
+#InsertBprofile{
+    background-color: #808080;
+    width: 400px;
+    padding-left: 5px;
+    padding-right: 5px;
+    position: relative;
+    left: 30px;
+    top: 25px;
+    box-shadow: 5px 5px 5px black;
+}
 #BprofileWhiteSpace{
     background-color: #f2f2f2;
     width: 365px;
@@ -112,6 +122,28 @@ a:hover{
     position: relative;
     left: 75px;
     box-shadow: 5px 5px 5px black;
+}
+#SubscribedCustomers{
+    overflow: auto;
+    background-color: #808080;
+    width: 500px;
+    position: relative;
+    left: 30px;
+    box-shadow: 5px 5px 5px black;
+}
+#EmailList{
+    position: absolute;
+    left: 600px;
+    top: 200px;
+    box-shadow: 5px 5px 5px black;
+}
+#tdEmail{
+    overflow: auto;
+    background-color: white;
+    height: 50px;
+    text-align:left;
+    width: 350px;
+    padding-left: 5px;
 }
 #Registration{
     background-color: #808080;
@@ -142,6 +174,7 @@ a:hover{
     padding-top: 25px;
     box-shadow: 5px 5px 5px black;
 }
+
 #hd {
     font-family: "lucida grande",tahoma,verdana,arial,sans-serif;
     font-size: 25px;
@@ -208,6 +241,20 @@ a:hover{
         );
     box-shadow: 2px 2px 5px #808080;
 }
+#SubscribedFilter{
+    position: relative;
+    left: 30px;
+    width: 500px;
+    background-image: -webkit-gradient(
+        linear,
+        left top,
+        left bottom,
+        color-stop(0.05, rgb(215, 221, 254)),
+        color-stop(1, rgb(161, 175, 206)),
+        color-stop(1, rgb(175, 187, 213))
+        );
+    box-shadow: 5px 5px 5px black;
+}
 #CustomerImage{
     width: 60px;
     height: 60px;
@@ -238,11 +285,13 @@ a:hover{
     left: 25px;
     border-radius: 15px;
 }
-#thProfile{
-    border-radius: 15px;
-}
 #pgTitle{
     background-color: #cccc00;
+}
+#PendingBusers{
+    background-color: #808080;
+    width: 500px;
+    overflow: auto;
 }
 #SubmitPost{ 
     height: 50px;
@@ -356,6 +405,14 @@ th{
     font-size: 20px;
     background-color: #cccccc;
     box-shadow: 5px 5px 5px black;
+}
+#BusinessProfile{
+    width: 400px;
+    font-size: 20px;
+    background-color: #cccccc;
+    box-shadow: 5px 5px 5px black;
+    position: absolute;
+    left: 550px;
 }
 #RateBusiness{
     background-color: #808080;
