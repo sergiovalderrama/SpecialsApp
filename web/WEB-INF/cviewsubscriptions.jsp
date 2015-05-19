@@ -50,23 +50,6 @@
                             </form>
                         </td>
                     </c:if>
-                    <c:if test="${sessionScope.cuser == null}">
-                        <td>
-                            <form action="CustomerLogin" method="Post">
-                                <input type="submit" value="Customer Login"/>
-                            </form>
-                        </td>
-                    </c:if>
-                    <td>
-                        <form action="BusinessLogin" method="Post">
-                            <input type="submit" value="Business Login"/>
-                        </form>
-                    </td>
-                    <td>
-                        <form action="AdministratorLogin" method="Post">
-                            <input type="submit" value="Administrator Login"/>
-                        </form>
-                    </td>
                 </tr>
             </table>
         </div>

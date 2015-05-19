@@ -55,7 +55,6 @@
                                 <input id="NavigationButton" type="submit" value="Customer Login"/>
                             </form>
                         </td>
-                    </c:if>
                     <td>
                         <form action="BusinessLogin" method="Post">
                             <input id="NavigationButton" type="submit" value="Business Login"/>
@@ -66,6 +65,7 @@
                             <input id="NavigationButton" type="submit" value="Administrator Login"/>
                         </form>
                     </td>
+                    </c:if>
                 </tr>
             </table>
         </div>

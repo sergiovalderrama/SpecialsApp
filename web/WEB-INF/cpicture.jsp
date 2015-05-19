@@ -8,7 +8,6 @@
         <title>Customer Picture</title>
     </head>
     <body>
-
         <div id="hd">Specials App</div>
         <div id="NavigationMenu">
             <c:if test="${sessionScope.cuser != null}">
@@ -36,20 +35,13 @@
             </table>
         </div>
         <div id="Title"><h1>Customer Picture</h1></div>
-            <c:choose>
-                <c:when test="${cprofile.picture != null}">
-                    <img id="DisplayPicProfile" src="ViewCustomerPicture?for=${cprofile.cuserid.id}"/>
-                </c:when>
-                <c:otherwise>
-                    <img id="DisplayPicProfile" src="images/noimage.jfif"/>
-                </c:otherwise>
-            </c:choose>
+        
         <br><c:out value="${flash}"/><br>
         <form method="post" action="UploadCustomerPicture"  enctype="multipart/form-data">
             <table id="InsertPictureTable">
                 <tr>
                     <td>
-                        <input type="file" name="pic" id="pic"/>
+                        <input type="file" name="pic" id="pic" required/>
                     </td>
                     <td>
                         <input type="submit" value="Upload Picture"/>
@@ -57,5 +49,13 @@
                 </tr>
             </table>
         </form>
+        <c:choose>
+            <c:when test="${cprofile.picture != null}">
+                <img id="DisplayPicProfile" src="ViewCustomerPicture?for=${cprofile.cuserid.id}"/>
+            </c:when>
+            <c:otherwise>
+                <img id="DisplayPicProfile" src="images/noimage.jfif"/>
+            </c:otherwise>
+        </c:choose>
     </body>
 </html>
