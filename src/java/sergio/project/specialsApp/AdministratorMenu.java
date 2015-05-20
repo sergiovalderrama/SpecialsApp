@@ -35,7 +35,7 @@ public class AdministratorMenu extends HttpServlet {
         request.getRequestDispatcher("WEB-INF/amenu.jsp").forward(request, response);
     }
 
-    private void changeBuserStatus(HttpServletRequest request) {
+    void changeBuserStatus(HttpServletRequest request) {
         String status = request.getParameter("status");
         int businessid = Integer.parseInt(request.getParameter("bid"));
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("SpecialsAppPU");
@@ -48,7 +48,7 @@ public class AdministratorMenu extends HttpServlet {
         em.getTransaction().commit();
         em.close();
     }
-    private void getBuserProfile(HttpServletRequest request){
+    void getBuserProfile(HttpServletRequest request){
         int bid = Integer.parseInt(request.getParameter("bid"));
         try{
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("SpecialsAppPU");
@@ -72,6 +72,7 @@ public class AdministratorMenu extends HttpServlet {
                 .getResultList();
         request.setAttribute("pending", buser);
     }
+    
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)

@@ -52,6 +52,9 @@ public class BusinessLogin extends HttpServlet {
             if (buser.getStatus().equals("pending")) {
                 request.setAttribute("flash", "Your membership will be approved within two business days of registration.");
                 request.getRequestDispatcher("WEB-INF/blogin.jsp").forward(request, response);
+            }else if(buser.getStatus().equals("disabled")) {
+                request.setAttribute("flash", "Your account has been disabled. Contact system administrator.");
+                request.getRequestDispatcher("WEB-INF/blogin.jsp").forward(request, response);
             }
             response.sendRedirect("BusinessPost");
         } catch (NoResultException nre) {

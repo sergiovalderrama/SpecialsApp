@@ -5,7 +5,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" type="text/css" href="styles/main.css">
-        <title>Administrator Menu</title>
+        <title>Approved Business Users</title>
     </head>
     <body>
         <div id="hd">Specials App</div>
@@ -26,12 +26,13 @@
                     <tr>
                         <td>
                             <form action="AdministratorMenu">
-                                <input id="NavigationButton" type="submit" value="Pending Users"/>
+                                <input type="submit" value="Pending Users"/>
                             </form>
                         </td>
                         <td>
-                            <form action="AdministratorApprovedBusers">
-                                <input id="NavigationButton" type="submit" value="View Approved Users"/>
+                            <form action="AdministratorMenu">
+                                <input type="hidden" name="action" value="approved"/>
+                                <input type="submit" value="View Approved Users"/>
                             </form>
                         </td>
                         <td>
@@ -47,7 +48,7 @@
                     </tr>
                 </table>
         </div>
-        <div id="Title"><h1>Pending Business Users</h1></div>
+        <div id="Title"><h1>Approved Business Users</h1></div>
         <br><h3><c:out value="${flash}"/></h3>
         <c:if test="${bprofile != null}">
         <table id="BusinessProfile">
@@ -108,7 +109,7 @@
             <c:forEach var="buser" items="${pending}">
                 <tr>
                     <td>
-                        <a href="AdministratorMenu?action=bprofile&bid=${buser.id}"><c:out value="${buser.username}"/></a> 
+                        <a href="AdministratorApprovedBusers?action=bprofile&bid=${buser.id}"><c:out value="${buser.username}"/></a> 
                     </td>
                     <td>
                         <a href="mailto:<c:out value="${buser.email}"/>">  
@@ -119,7 +120,7 @@
                         <c:out value="${buser.status}"/>
                     </td>
                     <td>
-                        <form action="AdministratorMenu" method="Post">
+                        <form action="AdministratorApprovedBusers" method="Post">
                             <select name="status" required>
                                 <option value="pending">pending</option>
                                 <option value="approved">approved</option>
