@@ -26,13 +26,13 @@
                     <tr>
                         <td>
                             <form action="AdministratorMenu">
-                                <input type="submit" value="Pending Users"/>
+                                <input id="NavigationButton" type="submit" value="Pending Users"/>
                             </form>
                         </td>
                         <td>
                             <form action="AdministratorMenu">
                                 <input type="hidden" name="action" value="approved"/>
-                                <input type="submit" value="View Approved Users"/>
+                                <input id="NavigationButton" type="submit" value="View Approved Users"/>
                             </form>
                         </td>
                         <td>

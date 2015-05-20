@@ -36,6 +36,7 @@ a:hover{
         );
     box-shadow: 2px 2px 5px #808080;
 }
+
 #SubscriptionsTable{
     background-color: #808080;
     width: 400px;
@@ -114,6 +115,14 @@ a:hover{
     left: 30px;
     top: 25px;
     box-shadow: 5px 5px 5px black;
+}
+#ChangePassword{
+    background-color: #808080;
+    padding: 10px;
+    box-shadow: 5px 5px 5px black;
+    position: relative;
+    top: 20px;
+    left: 25px;
 }
 #BprofileWhiteSpace{
     background-color: #f2f2f2;
