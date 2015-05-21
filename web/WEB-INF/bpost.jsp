@@ -52,6 +52,11 @@
                         <input id="NavigationButton" type="submit" value="View Customer Comments"/>
                         </form>
                     </td>
+                    <td>
+                        <form mehod="post" action="BusinessChangePassword"/>
+                        <input id="NavigationButton" type="submit" value="Change Password"/>
+                        </form>
+                    </td>
                 </tr>
             </table>
         </div>

@@ -28,43 +28,43 @@
                 <tr>
                     <td>
                         <form action="home" method="Post">
-                            <input type="submit" value="Home"/>
+                            <input id="NavigationButton" type="submit" value="Home"/>
                         </form>
                     </td>
                     <td>
                         <form action="about" method="Post">
-                            <input type="submit" value="About"/>
+                            <input id="NavigationButton" type="submit" value="About"/>
                         </form>
                     </td>
                     <c:if test="${sessionScope.cuser != null}">
                         <td>
                             <form action="ViewSubscriptions" method="Post">
-                                <input type="submit" value="View Subscriptions"/>
+                                <input id="NavigationButton" type="submit" value="View Subscriptions"/>
                             </form>
                         </td>
                         <td>
                             <form action="InsertCustomerProfile" method="post">
-                                <input type="submit" value="Add/Edit Profile"/>
+                                <input id="NavigationButton" type="submit" value="Add/Edit Profile"/>
                             </form>
                         </td>
                     </c:if>
                     <c:if test="${sessionScope.cuser == null}">
                         <td>
                             <form action="CustomerLogin" method="Post">
-                                <input type="submit" value="Customer Login"/>
+                                <input id="NavigationButton" type="submit" value="Customer Login"/>
+                            </form>
+                        </td>
+                        <td>
+                            <form action="BusinessLogin" method="Post">
+                                <input id="NavigationButton" type="submit" value="Business Login"/>
+                            </form>
+                        </td>
+                        <td>
+                            <form action="AdministratorLogin" method="Post">
+                                <input id="NavigationButton" type="submit" value="Administrator Login"/>
                             </form>
                         </td>
                     </c:if>
-                    <td>
-                        <form action="BusinessLogin" method="Post">
-                            <input type="submit" value="Business Login"/>
-                        </form>
-                    </td>
-                    <td>
-                        <form action="AdministratorLogin" method="Post">
-                            <input type="submit" value="Administrator Login"/>
-                        </form>
-                    </td>
                 </tr>
             </table>
         </div>

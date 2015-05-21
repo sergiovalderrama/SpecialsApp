@@ -30,23 +30,28 @@
                 <tr>
                     <td>
                         <form action="home" method="Post">
-                            <input type="submit" value="Home"/>
+                            <input id="NavigationButton" type="submit" value="Home"/>
                         </form>
                     </td>
                     <td>
                         <form action="about" method="Post">
-                            <input type="submit" value="About"/>
+                            <input id="NavigationButton" type="submit" value="About"/>
                         </form>
                     </td>
                     <c:if test="${sessionScope.cuser != null}">
                         <td>
                             <form action="ViewSubscriptions" method="Post">
-                                <input type="submit" value="View Subscriptions"/>
+                                <input id="NavigationButton" type="submit" value="View Subscriptions"/>
                             </form>
                         </td>
                         <td>
                             <form action="InsertCustomerProfile" method="post">
-                                <input type="submit" value="Add/Edit Profile"/>
+                                <input id="NavigationButton" type="submit" value="Add/Edit Profile"/>
+                            </form>
+                        </td>
+                        <td>
+                            <form mehod="post" action="CustomerChangePassword"/>
+                            <input id="NavigationButton" type="submit" value="Change Password"/>
                             </form>
                         </td>
                     </c:if>

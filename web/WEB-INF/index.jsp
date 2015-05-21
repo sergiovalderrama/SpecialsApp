@@ -48,6 +48,11 @@
                                 <input id="NavigationButton" type="submit" value="Add/Edit Profile"/>
                             </form>
                         </td>
+                        <td>
+                            <form mehod="post" action="CustomerChangePassword"/>
+                            <input id="NavigationButton" type="submit" value="Change Password"/>
+                            </form>
+                        </td>
                     </c:if>
                     <c:if test="${sessionScope.cuser == null}">
                         <td>
@@ -55,16 +60,16 @@
                                 <input id="NavigationButton" type="submit" value="Customer Login"/>
                             </form>
                         </td>
-                    <td>
-                        <form action="BusinessLogin" method="Post">
-                            <input id="NavigationButton" type="submit" value="Business Login"/>
-                        </form>
-                    </td>
-                    <td>
-                        <form action="AdministratorLogin" method="Post">
-                            <input id="NavigationButton" type="submit" value="Administrator Login"/>
-                        </form>
-                    </td>
+                        <td>
+                            <form action="BusinessLogin" method="Post">
+                                <input id="NavigationButton" type="submit" value="Business Login"/>
+                            </form>
+                        </td>
+                        <td>
+                            <form action="AdministratorLogin" method="Post">
+                                <input id="NavigationButton" type="submit" value="Administrator Login"/>
+                            </form>
+                        </td>
                     </c:if>
                 </tr>
             </table>

@@ -359,7 +359,7 @@ th{
 }
 .SpecialsScroll{
     overflow: auto;
-    height: 650px;
+    height: 500px;
     width: 600px;
     position: relative;
     left: 100px;

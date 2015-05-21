@@ -34,6 +34,11 @@
                                     <input id="NavigationButton" type="submit" value="Add/Edit Profile"/>
                                 </form>
                             </td>
+                            <td>
+                                <form mehod="post" action="CustomerChangePassword"/>
+                                <input id="NavigationButton" type="submit" value="Change Password"/>
+                                </form>
+                            </td>
                         </c:if>
                         <c:if test="${sessionScope.cuser == null}">
                             <td>

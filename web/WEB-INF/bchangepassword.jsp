@@ -1,14 +1,14 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" type="text/css" href="styles/main.css">
-        <title>Individual Reviews For Business</title>
+        <title>Change Business Password</title>
     </head>
     <body>
-        <div id="hd">SpecialsApp</div>
+        <div id="hd">Specials App</div>
         <div id="NavigationMenu">
             <table style="float : right">
                 <tr>
@@ -59,30 +59,43 @@
                 </tr>
             </table>
         </div>
-                    <div id="Title"><h1>Customer Reviews</h1></div>
-        <div id="CustomerReviews">
-            <c:forEach var="review" items="${breview}">
-                <div id="inner">
-                    <table id="TableReviews">
-                        <tr id="timeForReview">
-                            <td>
-                                Post Date: ${review[2]}
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <b>${review[1]}</b><br>
-                                <img id="CustomerImage" src="ViewCustomerPicture?for=${review[3]}" onerror="this.src='images/happyface.jfif'"/>        
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                ${review[0]}
-                            </td>
-                        </tr>
-                    </table>
-                </div>
-            </c:forEach>
+        <div id="Title"><h1>Change Business Password</h1></div>
+        <c:out value="${flash}"/>
+        <div id="PasswordWhiteSpace">
+            <table id="ChangePassword">
+                <form action="BusinessChangePassword">
+                    <tr>
+                        <td>
+                            <label>Current Password :</label>
+                        </td>
+                        <td>
+                            <input type="password" name="oldpassword" required/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>New Password :</label>
+                        </td>
+                        <td>
+                            <input type="password" name="newpassword1" required/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>New Password Again:</label>
+                        </td>
+                        <td>
+                            <input type="password" name="newpassword2" required/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="hidden" name="action" value="changep"/>
+                            <input type="submit" value="Submit"/>
+                        </td>
+                    </tr>
+                </form>
+            </table>
         </div>
     </body>
 </html>
