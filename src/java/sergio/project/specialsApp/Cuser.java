@@ -24,7 +24,7 @@ import javax.validation.constraints.Size;
  * @author Sergio
  */
 @Entity
-@Table(catalog = "", schema = "", uniqueConstraints = {
+@Table(catalog = "", schema = "sergio", uniqueConstraints = {
     @UniqueConstraint(columnNames = {"USERNAME"})})
 @NamedQueries({
     @NamedQuery(name = "Cuser.findAll", query = "SELECT c FROM Cuser c"),

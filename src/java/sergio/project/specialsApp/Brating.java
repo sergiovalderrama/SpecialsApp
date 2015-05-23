@@ -15,7 +15,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(catalog = "", schema = "")
+@Table(catalog = "", schema = "sergio")
 @NamedQueries({
     @NamedQuery(name = "Brating.findAll", query = "SELECT b FROM Brating b"),
     @NamedQuery(name = "Brating.findByRating", query = "SELECT b FROM Brating b WHERE b.rating = :rating"),

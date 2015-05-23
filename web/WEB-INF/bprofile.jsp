@@ -44,7 +44,7 @@
                 <table id="InsertBprofile">
                     <tr>
                         <th colspan="2">
-                            Bussiness Profile
+                            Business Profile
                         </th>
                     </tr>
                     <tr>

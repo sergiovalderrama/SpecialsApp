@@ -1,7 +1,6 @@
 package sergio.project.specialsApp;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.NoResultException;
@@ -30,7 +29,7 @@ public class CustomerLogin extends HttpServlet {
             EntityManager em = emf.createEntityManager();
             try {
 
-                Cuser customer = (Cuser) em.createNamedQuery("Cuser.findByUsername")
+                Cuser customer =  (Cuser) em.createNamedQuery("Cuser.findByUsername")
                         .setParameter("username", username)
                         .getSingleResult();
                 if (!customer.getPassword().equals(password)) {

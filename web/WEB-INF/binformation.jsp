@@ -20,6 +20,7 @@
                             <input type="submit" value="Logout"/>
                         </form>
                     </td>
+
                 </tr>
             </table>
         </c:if>
@@ -45,6 +46,11 @@
                         <td>
                             <form action="InsertCustomerProfile" method="post">
                                 <input id="NavigationButton" type="submit" value="Add/Edit Profile"/>
+                            </form>
+                        </td>
+                        <td>
+                            <form mehod="post" action="CustomerChangePassword"/>
+                            <input id="NavigationButton" type="submit" value="Change Password"/>
                             </form>
                         </td>
                     </c:if>

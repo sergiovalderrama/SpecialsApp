@@ -22,9 +22,9 @@ public class BusinessInformation extends HttpServlet {
             getCustomerRatingForStar(request);
             getBusinessProfile(request);
         } else if (action.equals("subscribe")) {
-            subscribeToBusiness(request);
+            subscribeToBusiness(request,response);
         } else if (action.equals("rate")) {
-            rateBusiness(request);
+            rateBusiness(request, response);
         }
         getBusinessProfile(request);
         request.getRequestDispatcher("WEB-INF/binformation.jsp").forward(request, response);
@@ -72,9 +72,8 @@ public class BusinessInformation extends HttpServlet {
         request.setAttribute(averageRating, "checked");
     }
 
-    private void subscribeToBusiness(HttpServletRequest request) {
+    private void subscribeToBusiness(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Cuser cuser = (Cuser) request.getSession().getAttribute("cuser");
-
         int buserid = Integer.parseInt(request.getParameter("bid"));
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("SpecialsAppPU");
         EntityManager em = emf.createEntityManager();
@@ -83,7 +82,7 @@ public class BusinessInformation extends HttpServlet {
                 .getSingleResult();
         if (cuser == null) {
             request.setAttribute("flash", "Please login to your customer account to subscribe.");
-            getBusinessProfile(request);
+            request.getRequestDispatcher("WEB-INF/clogin.jsp").forward(request, response);
         } else if (!checkForUniqueSubscriptions(buser, cuser)) {
             request.setAttribute("flash", "You have already subscribed to this Business");
             getBusinessProfile(request);
@@ -98,7 +97,7 @@ public class BusinessInformation extends HttpServlet {
         }
     }
 
-    private void rateBusiness(HttpServletRequest request) {
+    private void rateBusiness(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         Cuser cuser = (Cuser) request.getSession().getAttribute("cuser");
         int bid = Integer.parseInt(request.getParameter("bid"));
         int rating = Integer.parseInt(request.getParameter("rating"));
@@ -111,7 +110,7 @@ public class BusinessInformation extends HttpServlet {
 
         if (cuser == null) {
             request.setAttribute("flash", "Please login to your customer account to rate.");
-            getBusinessProfile(request);
+            request.getRequestDispatcher("WEB-INF/clogin.jsp").forward(request, response);
         } else {
             try {
                 String query = "Select b FROM Brating b WHERE b.cuserid =:cuserid AND b.buserid =:buserid";

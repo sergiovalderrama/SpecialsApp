@@ -14,7 +14,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
-@Table(catalog = "", schema = "")
+@Table(catalog = "", schema = "sergio")
 @NamedQueries({
     @NamedQuery(name = "Subscription.findAll", query = "SELECT s FROM Subscription s"),
     @NamedQuery(name = "Subscription.findById", query = "SELECT s FROM Subscription s WHERE s.id = :id")})

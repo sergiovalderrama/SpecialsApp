@@ -26,7 +26,7 @@ import javax.validation.constraints.Size;
  * @author Sergio
  */
 @Entity
-@Table(catalog = "", schema = "")
+@Table(catalog = "", schema = "sergio")
 @NamedQueries({
     @NamedQuery(name = "Cprofile.findAll", query = "SELECT c FROM Cprofile c"),
     @NamedQuery(name = "Cprofile.findByFname", query = "SELECT c FROM Cprofile c WHERE c.fname = :fname"),

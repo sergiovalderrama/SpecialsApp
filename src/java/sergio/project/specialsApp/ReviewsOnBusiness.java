@@ -23,7 +23,7 @@ public class ReviewsOnBusiness extends HttpServlet {
         String action = request.getParameter("action");
         Cuser cuser = (Cuser) request.getSession().getAttribute("cuser");
         if (cuser == null) {
-            request.setAttribute("flash", "Please login to your customer account to review/view reviews.");
+            request.setAttribute("flash", "Please login to your customer account to view/add reviews.");
             request.getRequestDispatcher("WEB-INF/clogin.jsp").forward(request, response);
         }
         if (action == null) {

@@ -48,6 +48,7 @@ public class BusinessLogin extends HttpServlet {
             } catch (NoResultException nre) {
                 request.setAttribute("flash", "Please complete your profile to access the menu.");
                 request.getRequestDispatcher("WEB-INF/bprofile.jsp").forward(request, response);
+                return;
             }
             if (buser.getStatus().equals("pending")) {
                 request.setAttribute("flash", "Your membership will be approved within two business days of registration.");
@@ -55,8 +56,9 @@ public class BusinessLogin extends HttpServlet {
             }else if(buser.getStatus().equals("disabled")) {
                 request.setAttribute("flash", "Your account has been disabled. Contact system administrator.");
                 request.getRequestDispatcher("WEB-INF/blogin.jsp").forward(request, response);
-            }
+            }else{
             response.sendRedirect("BusinessPost");
+            }
         } catch (NoResultException nre) {
             request.setAttribute("flash", "Incorrect Username/Password combinatioin");
             request.getRequestDispatcher("WEB-INF/blogin.jsp").forward(request, response);
