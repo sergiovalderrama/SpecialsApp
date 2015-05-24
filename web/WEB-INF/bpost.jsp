@@ -142,12 +142,16 @@
                     <div id="scontent">
                         <table id="SpecialsTable">
                             <tr>
-                                <td colspan="2">
-                                    <b>Date:</b> <fmt:formatDate type="date" value="${special.sdate}"/>
-                                </td>
-                                <td rowspan="4" style="background-color: #808080">
+                                <td style="background-color: #808080" style="height:5px">
                                     <button name ="delsbutton" value="${special.id}">Delete</button>
                                 </td>
+                            </tr>
+                            
+                            <tr>
+                                <td colspan>
+                                    <b>Date:</b> <fmt:formatDate type="date" value="${special.sdate}"/>
+                                </td>
+                                
                             </tr>
                             <tr>
                                 <td>
