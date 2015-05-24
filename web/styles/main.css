@@ -360,7 +360,7 @@ th{
 }
 .SpecialsScroll{
     overflow: auto;
-    height: 500px;
+    height: 600px;
     width: 1000px;
     position: relative;
     left: 100px;
