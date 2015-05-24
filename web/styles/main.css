@@ -224,7 +224,7 @@ a:hover{
 #IndexFilter{
     position: relative;
     left: 100px;
-    width: 600px;
+    width: 1000px;
     background-image: -webkit-gradient(
         linear,
         left top,
@@ -354,13 +354,14 @@ th{
     box-shadow: 2px 2px 5px #808080;
 }
 #BusinessImage{
-    width: 450px;
-    height: 250px;
+    width: 470px;
+    height: 260px;
+    padding-top: 5px;
 }
 .SpecialsScroll{
     overflow: auto;
     height: 500px;
-    width: 600px;
+    width: 1000px;
     position: relative;
     left: 100px;
     background-color: #f2f2f2;
@@ -395,8 +396,9 @@ th{
     font-family: cursive;
     color: white;
 }
+
 #SpecialsTable{
-    width: 450px;
+    width: 900px;
     box-shadow: 5px 5px 5px #808080;
     position: relative;
     left: 50px;

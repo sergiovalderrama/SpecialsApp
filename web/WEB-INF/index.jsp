@@ -117,22 +117,20 @@
                 <div id="scontent">
                     <table id="SpecialsTable">
                         <tr>
-                            <th>
+                            <th colspan="2">
                                 <a href="BusinessInformation?pid=${special[3]}&bid=${special[1].id}">${special[2]}</a>
                             </th>
                         </tr>
                         <tr>
-                            <td>
+                            <td rowspan="3">
                                 <c:if test="${special[0] != null}">
                                     <img id="BusinessImage" src="ViewBusinessPicture?for=${special[1].id}"/>
                                 </c:if>
                             </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <b>Type:</b>${special[7]}<br>
-                                <b>Date:</b><fmt:formatDate type="date" value="${special[4]}"/> 
-                                &nbsp;&nbsp;<b>Time:</b><fmt:formatDate type="time" value="${special[5]}"/> to 
+                            <td style="background-color: #627aad">
+                                <b>Type:</b> &nbsp;${special[7]}<br>
+                                <b>Date:</b>&nbsp;<fmt:formatDate type="date" value="${special[4]}"/> 
+                                &nbsp;&nbsp;<b>Time:&nbsp;</b><fmt:formatDate type="time" value="${special[5]}"/> to 
                                 <fmt:formatDate type="time" value="${special[6]}"/>
                                 &nbsp;&nbsp;
                             </td>
