@@ -27,17 +27,16 @@ public class ReviewsOnBusiness extends HttpServlet {
             request.getRequestDispatcher("WEB-INF/clogin.jsp").forward(request, response);
         }
         if (action == null) {
-            request.getRequestDispatcher("WEB-INF/creviews.jsp").forward(request, response);
         } else if (action.equals("reviews")) {
             postAReview(request, cuser);
         }
         getReviewsForBusiness(request);
+        request.setAttribute("action", null);
         request.getRequestDispatcher("WEB-INF/creviews.jsp").forward(request, response);
     }
 
     private void getReviewsForBusiness(HttpServletRequest request) {
         int bid = Integer.parseInt(request.getParameter("bid"));
-
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("SpecialsAppPU");
         EntityManager em = emf.createEntityManager();
         Buser buser = (Buser) em.createNamedQuery("Buser.findById")
@@ -53,26 +52,26 @@ public class ReviewsOnBusiness extends HttpServlet {
         List<Object> getReviews = em.createNativeQuery(query)
                 .setParameter(1, bid)
                 .getResultList();
-
+        em.close();
         request.setAttribute("bReviews", getReviews);
         request.setAttribute("Bprofile", bprofile);
-
     }
 
-    private void postAReview(HttpServletRequest request, Cuser cuser) throws IOException {
+    private void postAReview(HttpServletRequest request, Cuser cuser) throws IOException{
         try {
             String bid = request.getParameter("bid");
             int bidInteger = Integer.parseInt(bid);
             String creview = request.getParameter("creview");
             String md4jcustomerReview = new Markdown4jProcessor().process(creview);
             java.util.Date currentDate = new java.util.Date();
-
+            
             EntityManagerFactory emf = Persistence.createEntityManagerFactory("SpecialsAppPU");
             EntityManager em = emf.createEntityManager();
             String query = "SELECT b FROM Buser b WHERE b.id =:id";
             Buser buser = (Buser) em.createQuery(query)
                     .setParameter("id", bidInteger)
                     .getSingleResult();
+            if(checkForDuplicatePosts(buser, cuser, md4jcustomerReview)){
             Review review = new Review();
             review.setPost(md4jcustomerReview);
             review.setRdatetime(currentDate);
@@ -82,11 +81,27 @@ public class ReviewsOnBusiness extends HttpServlet {
             em.persist(review);
             em.getTransaction().commit();
             request.setAttribute("flash", "Thank you for posting");
+            }
         } catch (NoResultException nre) {
             request.setAttribute("flash", nre);
         }
     }
-
+    private boolean checkForDuplicatePosts(Buser buser, Cuser cuser, String md4jcustomerReview) {
+        try{
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("SpecialsAppPU");
+        EntityManager em = emf.createEntityManager();
+        String dquery = "Select r FROM Review r WHERE r.buserid =:buserid AND "
+                + "r.cuserid =:cuserid AND r.post =:post";
+        Review duplicates = (Review) em.createQuery(dquery)
+                .setParameter("buserid", buser)
+                .setParameter("cuserid", cuser)
+                .setParameter("post", md4jcustomerReview)
+                .getSingleResult();
+        }catch(NoResultException nre){
+            return true;
+        }
+        return false;
+    }
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
