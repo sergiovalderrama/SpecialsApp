@@ -58,11 +58,12 @@
         </div>
         <div id="Title"> <h1>Reviews for&nbsp;<c:out value="${Bprofile.bname}" /></h1></div>
         <div id="GreySpaceForPost">
+            <c:out value="${flash}"/>
             <table id="PostReview">
                 <form action="ReviewsOnBusiness" method="post">
                     <tr>
                         <td>
-                            <textarea id="SubmitPost" name="creview"></textarea>
+                            <textarea id="SubmitPost" name="creview" required></textarea>
                         </td>
                         <td>
                             <input type="hidden" name="bid" value="<c:out value="${bid}"/>"/>
