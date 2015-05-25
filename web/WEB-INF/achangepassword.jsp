@@ -30,8 +30,7 @@
                         </form>
                     </td>
                     <td>
-                        <form action="AdministratorMenu">
-                            <input type="hidden" name="action" value="approved"/>
+                        <form action="AdministratorApprovedBusers">
                             <input id="NavigationButton" type="submit" value="View Approved Users"/>
                         </form>
                     </td>
