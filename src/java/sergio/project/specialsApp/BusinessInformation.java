@@ -86,7 +86,7 @@ public class BusinessInformation extends HttpServlet {
         } else if (!checkForUniqueSubscriptions(buser, cuser)) {
             request.setAttribute("flash", "You have already subscribed to this Business");
             getBusinessProfile(request);
-            returnStarRating(request, cuser);
+            returnStarRating(request, cuser, buser);
         } else {
             Subscription subscribe = new Subscription();
             subscribe.setCuserid(cuser);
@@ -95,17 +95,18 @@ public class BusinessInformation extends HttpServlet {
             em.merge(subscribe);
             em.getTransaction().commit();
             request.setAttribute("flash", "You are now subscribed.");
-            returnStarRating(request, cuser);
+            returnStarRating(request, cuser, buser);
                     
         }
     }
-    private void returnStarRating(HttpServletRequest request, Cuser cuser){
+    private void returnStarRating(HttpServletRequest request, Cuser cuser, Buser buser){
         try{
             EntityManagerFactory emf = Persistence.createEntityManagerFactory("SpecialsAppPU");
             EntityManager em = emf.createEntityManager();
-            String rQuery = "SELECT b from Brating b WHERE b.cuserid =:cuserid";
+            String rQuery = "SELECT b from Brating b WHERE b.cuserid =:cuserid And b.buserid =:buserid";
             Brating getCuserRating = (Brating)em.createQuery(rQuery)
                     .setParameter("cuserid", cuser)
+                    .setParameter("buserid", buser)
                     .getSingleResult();
             String star = "star" + getCuserRating.getRating();
             request.setAttribute(star, "checked");

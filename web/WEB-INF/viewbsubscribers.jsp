@@ -139,6 +139,15 @@
                             <c:out value="${email[1]}"/>,
                         </c:forEach>
                     </td>
+                </tr>    
+                <tr style="background-color: #808080">
+                    <td>
+                        <a href="mailto:
+                        <c:forEach var="email" items="${customers}">
+                            <c:out value="${email[1]}"/>,
+                        </c:forEach>">Send E-Email</a>
+                    </td>
+                
                 </tr>
 
             </table>
