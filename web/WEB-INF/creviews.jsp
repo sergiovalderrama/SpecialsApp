@@ -47,11 +47,11 @@
                                 <input id="NavigationButton" type="submit" value="Add/Edit Profile"/>
                             </form>
                         </td>
-                         <td>
-                        <form mehod="post" action="CustomerChangePassword"/>
-                        <input id="NavigationButton" type="submit" value="Change Password"/>
-                        </form>
-                    </td>
+                        <td>
+                            <form mehod="post" action="CustomerChangePassword"/>
+                            <input id="NavigationButton" type="submit" value="Change Password"/>
+                            </form>
+                        </td>
                     </c:if>
                 </tr>
             </table>
@@ -83,7 +83,6 @@
                             <td>
                                 Post Date: ${review[1]}
                             </td>
-
                         </tr>
                         <tr>
                             <td>
@@ -100,6 +99,5 @@
                 </div>
             </c:forEach>
         </div>
-
     </body>
 </html>

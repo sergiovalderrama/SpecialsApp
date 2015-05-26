@@ -86,6 +86,7 @@ public class BusinessInformation extends HttpServlet {
         } else if (!checkForUniqueSubscriptions(buser, cuser)) {
             request.setAttribute("flash", "You have already subscribed to this Business");
             getBusinessProfile(request);
+            returnStarRating(request, cuser);
         } else {
             Subscription subscribe = new Subscription();
             subscribe.setCuserid(cuser);
@@ -94,9 +95,24 @@ public class BusinessInformation extends HttpServlet {
             em.merge(subscribe);
             em.getTransaction().commit();
             request.setAttribute("flash", "You are now subscribed.");
+            returnStarRating(request, cuser);
+                    
         }
     }
-
+    private void returnStarRating(HttpServletRequest request, Cuser cuser){
+        try{
+            EntityManagerFactory emf = Persistence.createEntityManagerFactory("SpecialsAppPU");
+            EntityManager em = emf.createEntityManager();
+            String rQuery = "SELECT b from Brating b WHERE b.cuserid =:cuserid";
+            Brating getCuserRating = (Brating)em.createQuery(rQuery)
+                    .setParameter("cuserid", cuser)
+                    .getSingleResult();
+            String star = "star" + getCuserRating.getRating();
+            request.setAttribute(star, "checked");
+            }catch(NoResultException nre){
+                
+            }
+    }
     private void rateBusiness(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         Cuser cuser = (Cuser) request.getSession().getAttribute("cuser");
         int bid = Integer.parseInt(request.getParameter("bid"));

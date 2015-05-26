@@ -25,13 +25,13 @@ public class ReviewsOnBusiness extends HttpServlet {
         if (cuser == null) {
             request.setAttribute("flash", "Please login to your customer account to view/add reviews.");
             request.getRequestDispatcher("WEB-INF/clogin.jsp").forward(request, response);
-        }
-        if (action == null) {
+        } else if (action == null) {
+            
         } else if (action.equals("reviews")) {
             postAReview(request, cuser);
         }
-        getReviewsForBusiness(request);
         request.setAttribute("action", null);
+        getReviewsForBusiness(request);
         request.getRequestDispatcher("WEB-INF/creviews.jsp").forward(request, response);
     }
 
@@ -47,7 +47,7 @@ public class ReviewsOnBusiness extends HttpServlet {
                 .setParameter("buserid", buser)
                 .getSingleResult();
         String query = "SELECT Review.post, Review.rdatetime, Review.cuserid, "
-                + "Cuser.username, Cuser.id FROM Review, Cuser, Cprofile "
+                + "Cuser.username, Cuser.id FROM Review, Cuser "
                 + "WHERE Review.buserid =? AND Review.cuserid = Cuser.id ORDER BY Review.rdatetime DESC";
         List<Object> getReviews = em.createNativeQuery(query)
                 .setParameter(1, bid)
@@ -64,7 +64,6 @@ public class ReviewsOnBusiness extends HttpServlet {
             String creview = request.getParameter("creview");
             String md4jcustomerReview = new Markdown4jProcessor().process(creview);
             java.util.Date currentDate = new java.util.Date();
-            
             EntityManagerFactory emf = Persistence.createEntityManagerFactory("SpecialsAppPU");
             EntityManager em = emf.createEntityManager();
             String query = "SELECT b FROM Buser b WHERE b.id =:id";
@@ -107,13 +106,11 @@ public class ReviewsOnBusiness extends HttpServlet {
             throws ServletException, IOException {
         processRequest(request, response);
     }
-
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
-
     @Override
     public String getServletInfo() {
         return "Short description";
